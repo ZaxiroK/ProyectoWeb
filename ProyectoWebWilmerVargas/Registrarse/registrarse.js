@@ -1,5 +1,6 @@
 var pk = 0;
 var personasRegistradas = [];
+var usuarioNoExistente = "";
 $(function() {
 
 
@@ -10,6 +11,7 @@ function validar() {
     var nombre, apellido, genero, telefono, usuario, contrasenia, contrasenia2;
     var pw = document.getElementById("form-password").value;
     var pwr = document.getElementById("form-passwordRepeat").value;
+    var usuario = document.getElementById("form-user").value;
     if (document.getElementById("form-firtsname").value == 0) {
         alert("Nombre requerido");
     } else if (document.getElementById("form-lastname").value == 0) {
@@ -24,6 +26,8 @@ function validar() {
         alert("Validacion contraseña requerida");
     } else if (document.getElementById("form-passwordRepeat").value == 0) {
         alert("Validacion contraseña requerida");
+    } else if (verificarUsuarioName(usuario) == 's') {
+        alert("El nombre de usuario ya existe !!");
     } else if (pw == pwr) {
         guardar();
     } else {
@@ -70,7 +74,7 @@ function guardar() {
         usuarioG: usuario,
         contraseniaG: contrasenia
     }
-    
+
     localStorageIds(pkey);
     getPersonasRegistradas();
     personasRegistradas.push(persona);
@@ -110,5 +114,26 @@ function getPersonasRegistradas() {
         personasRegistradas = JSON.parse(storagePersonas);
 
     }
-    return storagePersonas;
+
+    return personasRegistradas;
+}
+
+function verificarUsuarioName(userName) {
+    var user = userName;
+    var existe = 'n';
+
+    var lista = getPersonasRegistradas();
+
+    for (var i = 0; i < lista.length; i++) {
+
+        var nick = lista[i].usuarioG;
+
+        if (nick == user) {
+            existe = 's';
+            return existe;
+        } else {
+            existe = 'n';
+        }
+    }
+    return existe;
 }
