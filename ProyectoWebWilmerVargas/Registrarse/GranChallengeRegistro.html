@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="myform-bottom">
-                      <form role="form" action="" method="post" class="">
+                      <form role="form" action="" method="post" class="form-register" >
                         <div class="form-group">
                             
                             <input type="text" name="form-firtsname" placeholder="Primer nombre..." class="form-control" id="form-firtsname">
@@ -74,32 +74,32 @@
                         </div>
                           
                         <div class="form-group">
-                            <input type="text" name="form-phone" placeholder="Telefono..." class="form-control" id="form-email">
+                            <input type="text" name="form-phone" placeholder="Telefono..." class="form-control" id="form-phone">
                         </div>
                           <div class="form-group">
-                            <input type="text" name="form-username" placeholder="Nombre de usuario..." class="form-control" id="form-lastname">
+                            <input type="text" name="form-username" placeholder="Nombre de usuario..." class="form-control" id="form-user">
                         </div>
                           <div class="form-group">
-                            <input type="text" name="form-password" placeholder="Contraseña..." class="form-control" id="form-lastname">
+                            <input type="password" name="form-password" placeholder="Contraseña..." class="form-control" id="form-password">
                         </div>
                           <div class="form-group">
-                            <input type="text" name="form-passwordRepeat" placeholder="Repetir contraseña..." class="form-control" id="form-lastname">
+                            <input type="password" name="form-passwordRepeat" placeholder="Repetir contraseña..." class="form-control" id="form-passwordRepeat">
                         </div>
                           
-                          <a href ="../PrincipalLogin/GrandChallengePrincipalLogin.html" class= "btn btn-lg btn-success">Registrarme</a>    
+                          <a href="#" class="btn btn-lg btn-success" id="bntRegistrar" onclick="validar();">Registrarme</a>    
                           <a href ="../PrincipalLogin/GrandChallengePrincipalLogin.html" class= "btn btn-lg btn-default">Cancelar</a>      
                           
                         
-                        <div class="form-group">
+                        <div class="form-genero">
                                 
                                 <form action="" class="formulario">
-			                         <div class="radio">
+			                         <div class="radio" id="form-genero">
 				                        
  
-				                            <input type="radio" name="sexo" id="hombre">
+				                            <input type="radio" name="sexo" id="hombre" value= "hombre" checked>
 				                                <label id = "hombre" for="hombre">Hombre</label>
 		
-				                            <input  type="radio" name="sexo" id="mujer">
+				                            <input  type="radio" name="sexo" id="mujer" value = "mujer">
 				                                <label id = "mujer" for="mujer">Mujer</label>
 		
 				
@@ -129,6 +129,8 @@
       </div>
       
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="../js/bootstrap.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="registrarse.js"></script>
   </body>
 </html>
