@@ -95,9 +95,7 @@ function btnGrandChallenge(){
         else if(usuarioLogueado.nombreG == equipos[i].jugador5){
             window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
             }
-         else {
-            alert("Tienes que tener equipo para buscar un reto");
-        }
+        
          
-    } 
+    } alert("Tienes que tener equipo para buscar un reto");
 }

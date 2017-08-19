@@ -22,23 +22,34 @@ var equipo ={
     contrasenia: ""
     
 }
-
+var contadorPosicion = 0;
 
 
   function validar(){
       var nombre = "";
       var password = "";
+      var contador = 0;
+      nombre = document.getElementById("form-teamName").value;
+      password = document.getElementById("form-passwordTeam").value;
       if (document.getElementById("form-teamName").value == 0) {
         alert("Nombre requerido");
     } else if (document.getElementById("form-passwordTeam").value == 0) {
         alert("Contraseña requerida");
-    } else {
-        nombre = document.getElementById("form-teamName").value;
-        password = document.getElementById("form-passwordTeam").value; 
-        confirmacion(nombre,password);
-    }
+    } else if(confirmacion(nombre,password) == 'n'){
+        alert("Equipo o contraseña invalidas");
+    } else if(unirseEquipo(equipo) == 0){
+        alert("Equipo tiene la maxima capacidad de jugadores");
+    } else if(unirPersonaEquipo(contadorPosicion)){
+            
+        }else{
+                     
+                 }
+            
+    
    
  }
+
+
 
 
 function traerUsuarioLogueado() {
@@ -80,54 +91,51 @@ function getEquiposRegistradas() {
           var name = equipoName;
           var pw = pw;
           var existe = 'n';
-          for(var i = 0; i < equipos.length; i++){ {
+          for(var i = 0; i < equipos.length; i++) {
               if(equipos[i].nombreTeamG == name && equipos[i].contraseniaG == pw){
                   existe = 's';
+                  equipo = equipos[i];
+                  return existe;
               } else{
                  existe = 'n';
               }
-              if(existe == 's'){
-                 equipo = equipos[i]; 
-                 unirseEquipo();
-                 }
+              
                      
                  
-          } alert("Equipo o contraseña invalidas");
+          } return existe;
                                                   
                                                   
-          }
+                                                  
+          
       }
 
-function unirseEquipo(){
-    var equipos = getEquiposRegistradas();
-    var contadorPosicion = 0;    
-    for (var i = 0; i < equipos.length; i++) {
+function unirseEquipo(equipo){
+    var equipos = equipo;
+     contadorPosicion = 0;    
+    
         
-        if(equipos[i].jugador2 == ""){
+        if(equipos.jugador2 == ""){
             contadorPosicion = 1;
-            unirPersonaEquipo(contadorPosicion);
-            return;
-        }else if(equipos[i].jugador3 == ""){
+            
+            return contadorPosicion;
+        }else if(equipos.jugador3 == ""){
             contadorPosicion = 2;
-            unirPersonaEquipo(contadorPosicion); 
-            return;
-        }else if(equipos[i].jugador4 == ""){
+             
+            return contadorPosicion;
+        }else if(equipos.jugador4 == ""){
             contadorPosicion = 3;
-            unirPersonaEquipo(contadorPosicion); 
-            return;
-        }else if(equipos[i].jugador5 == ""){
-            contadorPosicion = 4;
-            unirPersonaEquipo(contadorPosicion); 
-            return;
+            
+            return contadorPosicion;
+        }else if(equipos.jugador5 == ""){
+            contadorPosicion = 4; 
+            return contadorPosicion;
+        }else {
+            return contadorPosicion;
         }
-         else {
-            alert("Equipo tiene la maxima capacidad de jugadores");
-            return;
-        }
-
-           
-              
-    } 
+         
+    
+        
+    
 }
 
 
@@ -191,28 +199,7 @@ function unirPersonaEquipo(contador){
 }
      }
     
-    /*getEquiposRegistrados();
-    equiposRegistrados.push(equipo);
-    listEquiposRegistrados(equiposRegistrados);*/
     
-    
-   /* 
-    
-        var equipo = {
-        capitan: usuarioLogueado.usuarioG,
-        jugador2: player2,
-        jugador3: player3,
-        jugador4: player4,
-        jugador5: player5,
-        nombreTeamG: nombreTeam,
-        categoriaG: categoria,
-        
-        cantonG: canton,
-        generoG: sexo,
-        contraseniaG: contrasenia,
-
-    }*/
-    //localStorage.clear();
 } 
 
 
@@ -228,7 +215,7 @@ function getEquiposRegistrados() {
 
     return equiposRegistrados;
 }
-
+/*
 function updateUser(){
      var idUserActive = localStorage.getItem('useractive');
      users = JSON.parse(localStorage.getItem('users'));
@@ -255,4 +242,4 @@ if(document.getElementById('contrasenna').value==document.getElementById('ccontr
 }
     }
     
-  
+  */
