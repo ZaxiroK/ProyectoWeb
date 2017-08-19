@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navegacion-Wil">
                     <label id="bienvenido" for="name  ">Bienvenido</label>
                     <label id="usuario" for="name">Usuario</label>
-                    <a href="../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
+                    <a href="../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right" id = "CerrarSesion">Cerrar Sesión</a>
 
                 </div>
             </div>
@@ -83,16 +83,16 @@
                                 <input type="text" name="form-lastname" placeholder="Primer apellido..." class="form-control" id="form-lastname">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="form-phone" placeholder="Telefono..." class="form-control" id="form-email">
+                                <input type="text" name="form-phone" placeholder="Telefono..." class="form-control" id="form-phone">
+                            </div>
+                            --<div class="form-group">
+                                <input type="text" name="form-username" placeholder="Nombre de usuario..." class="form-control" id="form-username">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="form-username" placeholder="Nombre de usuario..." class="form-control" id="form-lastname">
+                                <input type="text" name="form-password" placeholder="Contraseña..." class="form-control" id="form-password">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="form-password" placeholder="Contraseña..." class="form-control" id="form-lastname">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="form-passwordRepeat" placeholder="Repetir contraseña..." class="form-control" id="form-lastname">
+                                <input type="text" name="form-passwordRepeat" placeholder="Repetir contraseña..." class="form-control" id="form-passwordRepeat">
                             </div>
 
                             <div class="btn-group">
@@ -122,9 +122,26 @@
             </div>
         </div>
     </div>
+    <div id="CerrarSesion" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Cerrar Session</h4>
+      </div>
+      <div class="modal-body">
+        <strong>¿Está seguro de cerrar session?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="del" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
     <script src="miPerfil.js"></script>
 </body>
 

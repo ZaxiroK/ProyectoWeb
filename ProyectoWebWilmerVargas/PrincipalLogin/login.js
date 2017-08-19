@@ -9,11 +9,7 @@ var personaLogueadaInformacion = {
     contrasenia: ""
 };
 
-$(function() {
 
-
-
-})
 
 function validar() {
     var nombre, apellido, genero, telefono, usuario, contrasenia, contrasenia2;

@@ -1,12 +1,12 @@
 var pk = 0;
 var personasRegistradas = [];
 var usuarioNoExistente = "";
-$(function() {
+/*$(function() {
 
 
 
-})
-
+})*/
+//valida que los campos de ingresar los datos no esten vacios y sean los indicados para guardar
 function validar() {
     var nombre, apellido, genero, telefono, usuario, contrasenia, contrasenia2;
     var pw = document.getElementById("form-password").value;
@@ -37,7 +37,7 @@ function validar() {
 }
 
 
-
+//guarda los datos de la persona registrada
 function guardar() {
 
     var pkey, nombre, apellido, genero, telefono, usuario, contrasenia;
@@ -82,19 +82,20 @@ function guardar() {
     //localStorage.clear();
 }
 
+// guarda las personas en localstorage
 function listPersonasRegistradas(pList) {
     localStorage.setItem('storagePersonasRegistradas', JSON.stringify(pList))
     alert("Registro exitoso");
 }
 
 
-
+// guarda el contador de ids de las personas en localstorage
 function localStorageIds(primaryKeysContador) {
     localStorage.setItem('primaryKeysPersonas', JSON.stringify(primaryKeysContador))
 
 }
 
-
+//extrae el contador de localstorage y se lo asigna a el contador actual
 function getContadorPersonasPkeys() {
     var contadorPkeys = localStorage.getItem('primaryKeysPersonas')
     if (contadorPkeys == null) {
@@ -105,7 +106,7 @@ function getContadorPersonasPkeys() {
     }
     return contadorPkeys;
 }
-
+//extrae las personas de localstorage
 function getPersonasRegistradas() {
     var storagePersonas = localStorage.getItem('storagePersonasRegistradas')
     if (storagePersonas == null) {
@@ -117,7 +118,7 @@ function getPersonasRegistradas() {
 
     return personasRegistradas;
 }
-
+//verifica que el nombre de usuario no sea uno ya registrado
 function verificarUsuarioName(userName) {
     var user = userName;
     var existe = 'n';
