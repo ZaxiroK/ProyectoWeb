@@ -74,16 +74,17 @@
                               
                             
                             
-                            <input type="text" name="form-teamName" placeholder="ID.." class="form-control" id="form-teamName">
+                            <input type="text" name="form-teamName" placeholder="nombre equipo" class="form-control" id="form-teamName">
                         </div>
                          
                        
                           <div class="form-group">
-                            <input type="text" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-lastname">
+                            <input type="password" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
                         </div>
                           
                           
-                        <button type="submit" class="mybtn">Unirse al equipo..</button>
+                        <a href="#" class="btn btn-lg btn-success" id="bntRegistrar" onclick="validar();">Unirse a Equipo</a>    
+                          <a href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class= "btn btn-lg btn-default">Cancelar</a>
                         
                       </form>
                     </div>
@@ -107,9 +108,9 @@
       </div>
       
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="https://maxcdn.bootstrapodn.com/bootstrap/3.3.4/bootstrap.min.ja"></script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.ja"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    
+   
     <script src="../js/jquery-3.2.1.min.js"></script>
+      <script src="unirserEquipo.js"></script>
   </body>
 </html>
