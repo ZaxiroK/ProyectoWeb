@@ -1,3 +1,4 @@
+var equiposRegistrados = [];
 var usuarioLogueado = {
     pk: "",
     nombre: "",
@@ -8,12 +9,7 @@ var usuarioLogueado = {
     contrasenia: ""
 };
 
-function btnGrandChallenge() {
-    
-    alert("Tienes que tener equipo para buscar un reto");
 
-        //window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html")
-    }
 
 function btnMiEquipo() {
     
@@ -41,3 +37,41 @@ function asignarNombreLabel(){
     label.innerText = usuario.nombreG;
 }
 asignarNombreLabel();
+
+function getEquiposRegistradas() {
+    var storageEquipos = localStorage.getItem('equiposRegistrados')
+    if (storageEquipos == null) {
+        equiposRegistrados = [];
+    } else {
+        equiposRegistrados = JSON.parse(storageEquipos);
+
+    }
+
+    return equiposRegistrados;
+}
+
+function btnGrandChallenge(){
+    var equipos = getEquiposRegistradas();
+        
+    
+    for (var i = 0; i < equipos.length; i++) {
+        if(usuarioLogueado.nombreG == equipos[i].capitan){
+            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+        }else if(usuarioLogueado.nombreG == equipos[i].jugador2){
+            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            }
+        else if(usuarioLogueado.nombreG == equipos[i].jugador3){
+            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            }
+        else if(usuarioLogueado.nombreG == equipos[i].jugador4){
+            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            }
+        else if(usuarioLogueado.nombreG == equipos[i].jugador5){
+            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            }
+         else {
+            alert("Tienes que tener equipo para buscar un reto");
+        }
+         
+    } 
+}

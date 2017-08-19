@@ -59,7 +59,11 @@ function guardarTeam() {
     contrasenia = document.getElementById("form-passwordTeam").value;
 
     var equipo = {
-        usuarioG: usuarioLogueado.usuarioG,
+        capitan: usuarioLogueado.usuarioG,
+        jugador2: "",
+        jugador3: "",
+        jugador4: "",
+        jugador5: "",
         nombreTeamG: nombreTeam,
         categoriaG: categoria,
         /*provinciaG: provincia,*/
@@ -68,11 +72,15 @@ function guardarTeam() {
         contraseniaG: contrasenia,
 
     }
-
+    document.getElementById("form-teamName").value = "";
+    document.getElementById("form-passwordTeam").value = "";
+    document.getElementById("form-passwordTeamRepeat").value = "";
 
     getEquiposRegistrados();
     equiposRegistrados.push(equipo);
     listEquiposRegistrados(equiposRegistrados);
+    
+    
     //localStorage.clear();
 }
 
@@ -80,6 +88,7 @@ function guardarTeam() {
 function listEquiposRegistrados(pList) {
     localStorage.setItem('equiposRegistrados', JSON.stringify(pList))
     alert("Registro exitoso");
+    
 }
 
 
