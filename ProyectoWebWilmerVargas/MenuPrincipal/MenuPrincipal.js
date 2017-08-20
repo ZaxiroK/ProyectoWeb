@@ -12,36 +12,48 @@ var usuarioLogueado = {
 
 
 function btnMiEquipo() {
+    if(btnMiEquipoValidar()=='s'){
+        location.href ="../MiEquipo/GranChallengeMiEquipo.html";
+    }
+    else{
+        alert("Aun no tienes equipo");
+    }
+}    
+   
+function btnMiEquipoValidar(){
     var equipos = getEquiposRegistradas();
-        
+    var tieneEquipo = 'n';    
     
     for (var i = 0; i < equipos.length; i++) {
         if(usuarioLogueado.nombreG == equipos[i].capitan){
-            location.href ="../MiEquipo/GranChallengeMiEquipo.html";
+            tieneEquipo = 's';
+            return tieneEquipo;
             
         }else if(usuarioLogueado.nombreG == equipos[i].jugador2){
             location.href ="../MiEquipo/GranChallengeMiEquipo.html";
-            
+            tieneEquipo = 's';
+            return tieneEquipo;
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador3){
             location.href ="../MiEquipo/GranChallengeMiEquipo.html";
-            
+            tieneEquipo = 's';
+            return tieneEquipo;
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador4){
             location.href ="../MiEquipo/GranChallengeMiEquipo.html";
-            
+            tieneEquipo = 's';
+            return tieneEquipo;
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador5){
             location.href ="../MiEquipo/GranChallengeMiEquipo.html";
-            
+            tieneEquipo = 's';
+            return tieneEquipo;
             }
-         else {
-            alert("Aun no tienes equipo");
-        }
+         
+        }return tieneEquipo;
          
     } 
-}    
-   
+
 
 
 

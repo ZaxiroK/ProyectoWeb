@@ -200,7 +200,7 @@ button.mybtn:focus {
 
 #combobox{
     position: relative;
-    top: 390px;
+    top: 335px;
     left: 100px;
     font-size: 30px ; 
     color: black;
@@ -211,7 +211,7 @@ button.mybtn:focus {
 }
 #combobox1{
     position: relative;
-    top: 410px;
+    top: 345px;
     left: 100px;
     font-size: 30px ; 
     color: black;

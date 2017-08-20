@@ -23,7 +23,7 @@ function validar() {
         alert("El nombre de usuario o contraseña son incorrectos")
     } else {
 
-        window.open("../MenuPrincipal/GrandChallengeMenuPrincipal.html")
+        location.href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html"
     }
 
 }

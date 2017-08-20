@@ -23,6 +23,11 @@ function traerUsuarioLogueado() {
     return usuarioLogueado;
 }
 
+function personaLogueada(persona) {
+    localStorage.setItem('personaLogueada', JSON.stringify(persona))
+
+}
+
 
 
 function asignarDatosUsuario(){
@@ -130,10 +135,21 @@ function guardarCambiosUsuario(){
                  personasRegistradas[i].contraseniaG = document.getElementById('form-password').value;
 
                  
-
+         var personaChangeDatos = {
+             pkG: personasRegistradas[i].pkG,
+             nombreG: personasRegistradas[i].nombreG,
+             apellidoG: personasRegistradas[i].apellidoG,
+             telefonoG: personasRegistradas[i].telefonoG,
+             usuarioG: personasRegistradas[i].usuarioG,
+             contraseniaG: personasRegistradas[i].contraseniaG
+         }
          localStorage.setItem('storagePersonasRegistradas', JSON.stringify(personasRegistradas));
          alert("Actualizacion Completa");
-         location.href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html";
+         personaLogueada(personaChangeDatos);
+         traerUsuarioLogueado();
+         asignarDatosUsuario();
+         limpiar();
+         //location.href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html";
 }
      }  
 }
@@ -148,4 +164,9 @@ function getPersonasRegistradas() {
     }
 
     return personasRegistradas;
+}
+function limpiar(){
+    document.getElementById("form-password").value = "";
+    document.getElementById("form-passwordRepeat").value = "";
+    
 }
