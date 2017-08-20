@@ -1,3 +1,4 @@
+var personasRegistradas = [];
 var usuarioLogueado = {
     pk: "",
     nombre: "",
@@ -74,14 +75,14 @@ function validar(){
     var nombre, apellido, genero, telefono, usuario, contrasenia, contrasenia2;
     var pw = document.getElementById("form-password").value;
     var pwr = document.getElementById("form-passwordRepeat").value;
-    var usuario = document.getElementById("form-user").value;
+    var usuario = document.getElementById("form-username").value;
     if (document.getElementById("form-firtsname").value == 0) {
         alert("Nombre requerido");
     } else if (document.getElementById("form-lastname").value == 0) {
         alert("Apellido requerido");
     } else if (document.getElementById("form-phone").value == 0) {
         alert("Telefono requerido");
-    } else if (document.getElementById("form-user").value == 0) {
+    } else if (document.getElementById("form-username").value == 0) {
         alert("Nombre de usuario requerido");
     } else if (document.getElementById("form-password").value == 0) {
         alert("Contraseña requerida");
@@ -117,4 +118,34 @@ function verificarUsuarioName(userName) {
         }
     }
     return existe;
+}
+
+function guardarCambiosUsuario(){
+     for (var i = 0; i < personasRegistradas.length; i++) {
+         if(usuarioLogueado.usuarioG==personasRegistradas[i].usuarioG){
+                 personasRegistradas[i].nombreG = document.getElementById('form-username').value;
+                 personasRegistradas[i].apellidoG =document.getElementById('form-lastname').value;
+                 personasRegistradas[i].telefonoG = document.getElementById('form-phone').value;
+                 personasRegistradas[i].usuarioG = document.getElementById('form-username').value;
+                 personasRegistradas[i].contraseniaG = document.getElementById('form-password').value;
+
+                 
+
+         localStorage.setItem('storagePersonasRegistradas', JSON.stringify(personasRegistradas));
+         alert("Actualizacion Completa");
+         location.href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html";
+}
+     }  
+}
+
+function getPersonasRegistradas() {
+    var storagePersonas = localStorage.getItem('storagePersonasRegistradas')
+    if (storagePersonas == null) {
+        personasRegistradas = [];
+    } else {
+        personasRegistradas = JSON.parse(storagePersonas);
+
+    }
+
+    return personasRegistradas;
 }

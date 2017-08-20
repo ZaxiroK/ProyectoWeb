@@ -76,26 +76,44 @@ function getEquiposRegistradas() {
 }
 
 function btnGrandChallenge(){
+    
+     if(validarBtnGrandChallenge() == 's'){
+         location.href ="../CrearMisChallenges/GrandChallengeCrearMisRetos.html";
+         }else {
+             alert("Tienes que tener equipo para buscar un reto");
+         }
+    
+    
+}
+
+function validarBtnGrandChallenge(){
     var equipos = getEquiposRegistradas();
         
     
     for (var i = 0; i < equipos.length; i++) {
+        var existe = 'n';
         if(usuarioLogueado.nombreG == equipos[i].capitan){
-            location.href ="../CrearMisChallenges/GrandChallengeCrearMisRetos.html";
+            return existe = 's';
+            
             
         }else if(usuarioLogueado.nombreG == equipos[i].jugador2){
-            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            return existe = 's';
+            
+           
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador3){
-            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            return existe = 's';
+            
+            
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador4){
-            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            return existe = 's';
+            
+            
             }
         else if(usuarioLogueado.nombreG == equipos[i].jugador5){
-            window.open("../CrearMisChallenges/GrandChallengeCrearMisRetos.html");
+            return existe = 's';
             }
-        
-         
-    } alert("Tienes que tener equipo para buscar un reto");
+           
+            } return existe;
 }
