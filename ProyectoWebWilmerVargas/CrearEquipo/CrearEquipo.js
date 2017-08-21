@@ -36,13 +36,13 @@ function validar() {
 
 function guardarTeam() {
 
-    var nombreTeam, categoria, /*provincia,*/ canton, genero, contrasenia;
+    var nombreTeam, categoria, provincia, /*canton,*/ genero, contrasenia;
 
     usuarioLogueado = traerUsuarioLogueado();
     nombreTeam = document.getElementById("form-teamName").value;
     categoria = document.getElementById("combobox").value;
     //provincia = document.getElementById("form-provincia").value;
-    canton = document.getElementById("combobox1").value;
+    provincia = document.getElementById("combobox1").value;
 
     categoria = document.getElementById("combobox").value;
     //canton = 
@@ -66,8 +66,8 @@ function guardarTeam() {
         jugador5: "",
         nombreTeamG: nombreTeam,
         categoriaG: categoria,
-        /*provinciaG: provincia,*/
-        cantonG: canton,
+        /*cantoG: canton,*/
+        provinciaG: provincia,
         generoG: sexo,
         contraseniaG: contrasenia,
 
