@@ -79,8 +79,8 @@ function guardarTeam() {
     getEquiposRegistrados();
     equiposRegistrados.push(equipo);
     listEquiposRegistrados(equiposRegistrados);
-    
-    
+
+
     //localStorage.clear();
 }
 
@@ -88,7 +88,7 @@ function guardarTeam() {
 function listEquiposRegistrados(pList) {
     localStorage.setItem('equiposRegistrados', JSON.stringify(pList))
     alert("Registro exitoso");
-    
+
 }
 
 

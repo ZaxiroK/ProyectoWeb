@@ -2,6 +2,7 @@ var contadorCombobox = 0;
 var equiposRegistrados = [];
 var retosRegistrados = [];
 var equiposRegistrados = [];
+var matchesRegistrados = [];
 var equipoLogueado = {
     capitan: "",
     jugador2: "",
@@ -50,9 +51,9 @@ function validar() {
     }
 
 }
+
 function traerEquipoDelJugador() {
     var listaEquipos = getEquiposRegistrados();
-    var miEquipo = 'n';
     for (var i = 0; i < listaEquipos.length; i++) {
         if (listaEquipos[i].capitan == usuarioLogueado.nombreG) {
             equipoLogueado = listaEquipos[i];
@@ -70,6 +71,35 @@ function traerEquipoDelJugador() {
         } else if (listaEquipos[i].jugador5 == usuarioLogueado.nombreG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
+
+        }
+
+    }
+}
+
+
+
+function traerEquipoDelJugadorXparametros(jugador) {
+    var listaEquipos = getEquiposRegistrados();
+    var player = jugador;
+    var equipo2;
+    for (var i = 0; i < listaEquipos.length; i++) {
+        if (listaEquipos[i].capitan == jugador) {
+            equipo2 = listaEquipos[i];
+            return equipo2;
+        } else if (listaEquipos[i].jugador2 == jugador) {
+            equipo2 = listaEquipos[i];
+            return equipo2;
+        } else if (listaEquipos[i].jugador3 == jugador) {
+            equipo2 = listaEquipos[i];
+            return equipo2;
+        } else if (listaEquipos[i].jugador4 == jugador) {
+            equipo2 = listaEquipos[i];
+            return equipo2;
+
+        } else if (listaEquipos[i].jugador5 == jugador) {
+            equipo2 = listaEquipos[i];
+            return equipo2;
 
         }
 
@@ -127,9 +157,9 @@ function guardarTeam() {
 }
 
 
-function listEquiposRegistrados(pList) {
-    localStorage.setItem('equiposRegistrados', JSON.stringify(pList))
-    alert("Registro exitoso");
+function guardarMatches(match) {
+    localStorage.setItem('matchesRegistrados', JSON.stringify(match))
+    alert("Solicitud de match registrada ");
 
 }
 
@@ -146,6 +176,19 @@ function getEquiposRegistrados() {
     }
 
     return equiposRegistrados;
+}
+
+
+function getMatchesRegistrados() {
+    var storageMatches = localStorage.getItem('matchesRegistrados')
+    if (storageMatches == null) {
+        matchesRegistrados = [];
+    } else {
+        matchesRegistrados = JSON.parse(storageMatches);
+
+    }
+
+    return matchesRegistrados;
 }
 
 function verificarTeamName(teamName) {
@@ -265,14 +308,29 @@ function cargarMisRetosCreados() {
         tdHora.innerHTML = x.horaG;
 
 
-        btnInformacion.className = 'delete btn btn-success btn-sm glyphicon glyphicon-search';
+        btnInformacion.className = 'delete btn btn-success btn-sm glyphicon glyphicon-ok';
         btnInformacion.addEventListener('click', function() {
             $(document).ready(function() {
-                $('#delete').modal('show');
+                var team1 = equipoLogueado;
+                var team2 = traerEquipoDelJugadorXparametros(x.encargadoG);
+                var unir = [];
+                var matches = [];
+                if (validacionMatches(team1, team2) == 'n') {
+                    unir.push(team1, team2);
+                    //unir.push(team2);
+                    matches.push(unir);
+                    guardarMatches(matches);
+                } else { //alert("Ya retaste al equipo espera su respuesta...");
+                    $('#delete').modal('show');
 
-                $("#del").click(function() {
-                    removeFromLocalStorage(i);
-                });
+                    $("#del").click(function() {
+
+                    });
+                }
+
+
+
+
             });
 
         });
@@ -292,5 +350,43 @@ function cargarMisRetosCreados() {
 
         gridBody.appendChild(tr);
     });
+
+}
+
+function validacionMatches(teamOne, teamTwo) {
+    var equipo1 = teamOne;
+    var equipo2 = teamTwo;
+    var equipo1Guardado = "";
+    var equipo2Guardado;
+    var matchesExiste = getMatchesRegistrados();
+    var contenedorMatches = [];
+    var contenedorMatches2 = [];
+    var existe = 'n';
+    for (var i = 0; i < matchesExiste.length; i++) {
+        contenedorMatches = matchesExiste[i];
+        for (var y = 0; y < contenedorMatches.length; y++) {
+            contenedorMatches2 = contenedorMatches[y];
+            //equipo1Guardado = contenedorMatches2;
+            if (equipo1Guardado == "") {
+                equipo1Guardado = contenedorMatches2;
+
+            } else {
+                equipo2Guardado = contenedorMatches2
+            }
+
+        }
+
+        if (equipo1Guardado.nombreTeamG == equipo1.nombreTeamG && equipo2Guardado.nombreTeamG == equipo2.nombreTeamG ||
+            equipo1Guardado.nombreTeamG == equipo2.nombreTeamG && equipo2Guardado.nombreTeamG == equipo1.nombreTeamG ||
+            equipo2Guardado.nombreTeamG == equipo1.nombreTeamG && equipo1Guardado.nombreTeamG == equipo2.nombreTeamG ||
+            equipo2Guardado.nombreTeamG == equipo2.nombreTeamG && equipo1Guardado.nombreTeamG == equipo1.nombreTeamG
+            /*||
+                      equipo2Guardado.nombreTeamG == equipo2.nombreTeamG  && equipo1Guardado.nombreTeamG == equipo1.nombreTeamG*/
+        ) {
+            existe = 's';
+            return existe;
+        }
+    }
+    return existe;
 
 }
