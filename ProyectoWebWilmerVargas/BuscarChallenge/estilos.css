@@ -270,7 +270,7 @@ button.mybtn:focus {
 }
 #btnCancha{
     position: relative;
-    top: -600px;
+    top: -350px;
     right: -410px;
     font-size: 20px ;
 }
