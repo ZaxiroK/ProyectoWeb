@@ -73,91 +73,40 @@
                         <label id = "team">Genero</label>
 
                         <div class="myform-middle-left">
-                            <table id = "tabla1" class ="tabla">
+                              <table class="table table-hover" id="tblMiEquipo">
+                            <thead>
                                 <tr>
-                                   <th>No.</th>
-                                   <th>Jugador.</th>
-                                   <th>Eliminar</th>    
+                                    <th>No.</th>
+                                    <th>ID</th>
+                                    <th>Jugador</th>
+                                    <th>Eliminar</th>
+                                    
+
                                 </tr>
-                                
-                                <tr>
-                                   <td>1</td>
-                                   <td>Carlos</td>
-                                    <td><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>2</td>
-                                   <td>Macho</td>
-                                   <td><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>3</td>
-                                   <td>Maicol</td>
-                                   <td><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>4</td>
-                                   <td>Marvin</td>
-                                   <td><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>5</td>
-                                   <td>Michael</td>
-                                   <td><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                            </table>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                            
                             
                         </div>
                         
                         <div class="myform-middle-right">
-                          <table id = "tabla2" class ="tabla">
+                          <table class="table table-hover" id="tblMisRetos">
+                            <thead>
                                 <tr>
-                                   <th>Equipo A</th>
-                                   <th>vs</th>
-                                   <th>Equipo B</th>
-                                   <th>Ganador</th>
+                                    <th>Mi Equipo</th>
+                                    <th>vs</th>
+                                    <th>Contrincante</th>
+                                    
+
                                 </tr>
-                                
-                                <tr>
-                                   <td>Union</td>
-                                   <td>vs</td>
-                                   <td>Papas</td>
-                                   <td>A</td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>Union</td>
-                                   <td>vs</td>
-                                   <td>Lolis</td>
-                                   <td>A</td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>Union</td>
-                                   <td>vs</td>
-                                   <td>Pegasos</td>
-                                   <td>A</td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>Union</td>
-                                   <td>vs</td>
-                                   <td>Red Bulls</td>
-                                   <td>A</td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>Union</td>
-                                   <td>vs</td>
-                                   <td>Los unknown</td>
-                                   <td>A</td>
-                                </tr>
-                            </table>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                             
                         </div>
                     </div>    
@@ -194,10 +143,29 @@
         </div>
       </div>
       
+      <div id="delete" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h4 class="modal-title">Eliminar Jugador</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <strong>Estas seguro que quieres eliminar este jugador?</strong>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="del" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="https://maxcdn.bootstrapodn.com/bootstrap/3.3.4/bootstrap.min.ja"></script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.ja"></script>
-    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src= "MiEquipo.js"></script>
   </body>
 </html>

@@ -24,15 +24,7 @@ var usuarioLogueado = {
     contrasenia: ""
 };
 
-var retoGuardado = {
-    encargadoG: "",
-    telefonoG: "",
-    nombreTeamG: "",
-    canchaG: "",
-    fechaG: "",
-    horaG: "",
-    IDG: ""
-}
+
 
 //loadFromLocalStorage();
 FillCombo();
@@ -327,7 +319,4 @@ function removeFromLocalStorage(index) {
     cargarMisRetosCreados();
 }
 
-/*function validarRegistroRetoABorrar(){
-     
-     retosRegistrados 
-}*/
+
