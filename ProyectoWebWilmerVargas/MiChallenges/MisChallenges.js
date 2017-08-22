@@ -247,6 +247,7 @@ function cargarMisRetosCreados() {
     retoAcargar.forEach(function(x, contador) {
         var tr = document.createElement("tr"),
             tdNumero = document.createElement("td"),
+            tdID = document.createElement("td"),
             tdEquipo = document.createElement("td"),
             tdUsuario = document.createElement("td"),
             tdTelefono = document.createElement("td"),
@@ -266,7 +267,8 @@ function cargarMisRetosCreados() {
             }
 
         tdNumero.innerHTML = contador + 1;
-        tdEquipo.innerHTML = x.equipoG;
+        tdID.innerHTML = x.IDG;
+        tdEquipo.innerHTML = x.nombreTeamG;
         tdUsuario.innerHTML = x.encargadoG;
         tdTelefono.innerHTML = x.telefonoG;
         tdCancha.innerHTML = x.canchaG;
@@ -280,7 +282,7 @@ function cargarMisRetosCreados() {
                     $('#delete').modal('show');
 
                     $("#del").click(function() {
-
+                        removeFromLocalStorage(x.IDG);
                     });
                 
 
@@ -301,7 +303,7 @@ function cargarMisRetosCreados() {
                     $('#delete').modal('show');
 
                     $("#del").click(function() {
-                        removeFromLocalStorage(contador);
+                        
                     });
                 
 
@@ -320,6 +322,7 @@ function cargarMisRetosCreados() {
         tdAceptar.appendChild(btnAceptar);
         }
         tr.appendChild(tdNumero);
+        tr.appendChild(tdID);
         tr.appendChild(tdEquipo);
         tr.appendChild(tdUsuario);
         tr.appendChild(tdTelefono);
@@ -337,18 +340,7 @@ function cargarMisRetosCreados() {
  }
 }
 
-var retoTabla = {
-            IDG : i,
-            nombreTeamG : MisRetos[i].nombreTeamG,
-            encargadoG : MisRetos[i].encargadoG,
-            telefonoG : MisRetos[i].telefonoG,
-            canchaG : MisRetos[i].canchaG,
-            fechaG : MisRetos[i].fechaG,
-            horaG : MisRetos[i].horaG
-            
-            }
-            retos.push(retoTabla);
-            //arregloListaDelete.push(i);
+
 
         
 
@@ -361,7 +353,7 @@ function misMatches(){
     var listaMisRetos = [];
     var equipo1Guardado;
     var equipo2Guardado;
-    var retoGuardado;
+    //var retoGuardado;
     var IDG;
     
     for (var i = 0; i < matchesExiste.length; i++) {
@@ -376,7 +368,15 @@ function misMatches(){
             } else if (equipo2Guardado == null){
                 equipo2Guardado = contenedorMatches2;
             } else {
-                retoGuardado = contenedorMatches2;
+                var retoGuardado = {
+                    IDG : i,
+                    nombreTeamG : contenedorMatches2.nombreTeamG,
+                    encargadoG : contenedorMatches2.encargadoG,
+                    telefonoG : contenedorMatches2.telefonoG,
+                    canchaG : contenedorMatches2.canchaG,
+                    fechaG : contenedorMatches2.fechaG,
+                    horaG : contenedorMatches2.horaG
+                }  
             }
             }
 
@@ -416,13 +416,13 @@ function validarBtnAcceptarReto(encargado){
 
 function removeFromLocalStorage(index) {
     var misRetos = [],
-        dataInLocalStorage = localStorage.getItem("retosRegistrados");
+        dataInLocalStorage = localStorage.getItem("matchesRegistrados");
 
     misRetos = JSON.parse(dataInLocalStorage);
 
     misRetos.splice(index, 1);
 
-    localStorage.setItem("retosRegistrados", JSON.stringify(misRetos));
+    localStorage.setItem("matchesRegistrados", JSON.stringify(misRetos));
 
     cargarMisRetosCreados();
 }
