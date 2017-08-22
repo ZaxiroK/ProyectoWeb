@@ -3,7 +3,7 @@ var equiposRegistrados = [];
 var retosRegistrados = [];
 var equiposRegistrados = [];
 var matchesRegistrados = [];
-var retoDatos;
+var contador;
 var equipoLogueado = {
     capitan: "",
     jugador2: "",
@@ -26,7 +26,7 @@ var usuarioLogueado = {
     contrasenia: ""
 };
 
-FillCombo();
+
 traerUsuarioLogueado();
 traerEquipoDelJugador();
 asignarNombreLabel();
@@ -158,9 +158,9 @@ function guardarTeam() {
 }
 
 
-function guardarMatches(match) {
-    localStorage.setItem('matchesRegistrados', JSON.stringify(match))
-    alert("Solicitud de match registrada ");
+function aceptarMatches(match) {
+    localStorage.setItem('matchesAceptadosRegistrados', JSON.stringify(match))
+    alert("Solicitud de match aceptada ");
 
 }
 
@@ -184,11 +184,9 @@ function getMatchesRegistrados() {
     var storageMatches = localStorage.getItem('matchesRegistrados')
     if (storageMatches == null) {
         matchesRegistrados = [];
-        //matchesRegistrados2 = [];
-        //matchesRegistrados2.push(matchesRegistrados);
     } else {
         matchesRegistrados = JSON.parse(storageMatches);
-        //matchesRegistrados2.push(matchesRegistrados);
+
     }
 
     return matchesRegistrados;
@@ -228,70 +226,26 @@ function traerUsuarioLogueado() {
 function asignarNombreLabel() {
     var label = document.getElementById("usuario");
     var usuario = traerUsuarioLogueado();
-    console.log(usuario.nombreG);
     label.innerText = usuario.nombreG;
 }
 
-function FillCombo() {
-    var comboProvincia = document.getElementById("combobox1").value;
 
-    var canchas = [],
-        listaCanchas = localStorage.getItem("canchasRegistradas")
-    if (listaCanchas !== null) {
-        canchas = JSON.parse(listaCanchas);
-    }
-    var combo = document.getElementById("comboboxCanchas");
-
-    /* if(contadorCombobox > 0){
-               for (var i = 0; i < combo.length; i++) {
-                    for (var i = 0; i < canchas.length; i++) {
-                 combo = document.getElementById("comboboxCanchas");
-                    var option = document.createElement('option');
-           combo.options.add(option, i);
-           combo.options[i].value = canchas[i].nombreCanchaG;
-           combo.options[i].innerText = canchas[i].nombreCanchaG;
-                    contadorCombobox++;
-          
-                } 
- 
-       }
-    }else{*/
-    for (var i = 0; i < canchas.length; i++) {
-        //if(canchas[i].provinciaG == comboProvincia ){
-
-        combo = document.getElementById("comboboxCanchas");
-        var option = document.createElement('option');
-        combo.options.add(option, i);
-        combo.options[i].value = canchas[i].nombreCanchaG;
-        combo.options[i].innerText = canchas[i].nombreCanchaG;
-        contadorCombobox++;
-
-        // }
-    }
-}
 
 function cargarMisRetosCreados() {
     var retos = [];
-    var retoGuardado;
-    var globalRetos = [],
-        dataInLocalStorage = localStorage.getItem("retosRegistrados"),
+    var btn = "s";
+    var retoAcargar = misMatches();
+    
+        
         gridBody = document.querySelector("#tblMisRetos tbody");
 
-    if (dataInLocalStorage !== null) {
-        globalRetos = JSON.parse(dataInLocalStorage);
-    }
+    if (retoAcargar != null) {
+        
+   
 
-    for (var i = 0; i < globalRetos.length; i++) {
-        if (equipoLogueado.nombreTeamG != globalRetos[i].nombreTeamG) {
-             retoGuardado = globalRetos[i];
-
-            retos.push(retoGuardado);
-
-        }
-    }
     gridBody.innerHTML = '';
 
-    retos.forEach(function(x, i) {
+    retoAcargar.forEach(function(x, contador) {
         var tr = document.createElement("tr"),
             tdNumero = document.createElement("td"),
             tdEquipo = document.createElement("td"),
@@ -299,38 +253,37 @@ function cargarMisRetosCreados() {
             tdTelefono = document.createElement("td"),
             tdCancha = document.createElement("td"),
             tdFecha = document.createElement("td"),
-            tdHora = document.createElement("td"),
-            tdInformacion = document.createElement("td"),
-            btnInformacion = document.createElement("button");
+            tdHora = document.createElement("td");
+            if(validarBtnAcceptarReto(x.encargadoG) =="n"){
+                btn = "n"
+            }
+        
+            var tdEliminar = document.createElement("td"),
+            btnEliminar = document.createElement("button");
+        
+            if(btn =="n"){
+            var tdAceptar = document.createElement("td"),
+            btnAceptar = document.createElement("button");
+            }
 
-        tdNumero.innerHTML = i + 1;
+        tdNumero.innerHTML = contador + 1;
         tdEquipo.innerHTML = x.equipoG;
         tdUsuario.innerHTML = x.encargadoG;
         tdTelefono.innerHTML = x.telefonoG;
         tdCancha.innerHTML = x.canchaG;
         tdFecha.innerHTML = x.fechaG;
         tdHora.innerHTML = x.horaG;
-
-
-        btnInformacion.className = 'delete btn btn-success btn-sm glyphicon glyphicon-ok';
-        btnInformacion.addEventListener('click', function() {
+        
+        btnEliminar.className = 'delete btn btn-danger btn-sm glyphicon glyphicon-trash';
+        btnEliminar.addEventListener('click', function() {
             $(document).ready(function() {
-                var team1 = equipoLogueado;
-                var team2 = traerEquipoDelJugadorXparametros(x.encargadoG);
-                var unir = [];  
-                if (validacionMatches(team1, team2) == 'n') {
-                    unir.push(team1, team2, x);
-                    //unir.push(team2);
-                    matchesRegistrados.push(unir);
-                
-                    guardarMatches(matchesRegistrados);
-                } else { //alert("Ya retaste al equipo espera su respuesta...");
+                  
                     $('#delete').modal('show');
 
                     $("#del").click(function() {
 
                     });
-                }
+                
 
 
 
@@ -338,10 +291,35 @@ function cargarMisRetosCreados() {
             });
 
         });
+        
+        
+        if(btn =="n"){
+ 
+        btnAceptar.className = 'delete btn btn-success btn-sm glyphicon glyphicon-ok';
+        btnAceptar.addEventListener('click', function() {
+            $(document).ready(function() {
+                  
+                    $('#delete').modal('show');
+
+                    $("#del").click(function() {
+
+                    });
+                
 
 
-        tdInformacion.appendChild(btnInformacion);
 
+
+            });
+
+        });
+        }
+        
+
+        
+        tdEliminar.appendChild(btnEliminar);
+        if(btn =="n"){
+        tdAceptar.appendChild(btnAceptar);
+        }
         tr.appendChild(tdNumero);
         tr.appendChild(tdEquipo);
         tr.appendChild(tdUsuario);
@@ -349,60 +327,77 @@ function cargarMisRetosCreados() {
         tr.appendChild(tdCancha);
         tr.appendChild(tdFecha);
         tr.appendChild(tdHora);
-        tr.appendChild(tdInformacion);
+        tr.appendChild(tdEliminar);
+        if(btn =="n"){
+        tr.appendChild(tdAceptar);
+        }
 
 
         gridBody.appendChild(tr);
     });
-
+ }
 }
 
-function validacionMatches(teamOne, teamTwo) {
-    var equipo1 = teamOne;
-    var equipo2 = teamTwo;
-    var equipo1Guardado = "";
-    var equipo2Guardado = "";
+
+function misMatches(){
+    var equipo1 = equipoLogueado;
+    var equipo2;
     var matchesExiste = getMatchesRegistrados();
     var contenedorMatches = [];
     var contenedorMatches2 = [];
-    var existe = 'n';
+    var listaMisRetos = [];
+    var equipo1Guardado;
+    var equipo2Guardado;
+    var retoGuardado;
+    
+    
     for (var i = 0; i < matchesExiste.length; i++) {
         contenedorMatches = matchesExiste[i];
         for (var y = 0; y < contenedorMatches.length; y++) {
             contenedorMatches2 = contenedorMatches[y];
-            if(equipo1Guardado == "" || equipo2Guardado == "" || retoDatos == null){
-            if (equipo1Guardado == "") {
+            
+            if (equipo1Guardado == null) {
                 equipo1Guardado = contenedorMatches2;
 
-            } else if (equipo2Guardado == ""){
+            } else if (equipo2Guardado == null){
                 equipo2Guardado = contenedorMatches2;
-            } else{
-                   retoDatos = contenedorMatches2;
-                    
+            } else {
+                retoGuardado = contenedorMatches2;
             }
-            
-            } 
-            
-    }
-        if (equipo1Guardado.nombreTeamG == equipo1.nombreTeamG && equipo2Guardado.nombreTeamG == equipo2.nombreTeamG ||
-            equipo1Guardado.nombreTeamG == equipo2.nombreTeamG && equipo2Guardado.nombreTeamG == equipo1.nombreTeamG ||
-            equipo2Guardado.nombreTeamG == equipo1.nombreTeamG && equipo1Guardado.nombreTeamG == equipo2.nombreTeamG ||
-            equipo2Guardado.nombreTeamG == equipo2.nombreTeamG && equipo1Guardado.nombreTeamG == equipo1.nombreTeamG
-            /*||
-                      equipo2Guardado.nombreTeamG == equipo2.nombreTeamG  && equipo1Guardado.nombreTeamG == equipo1.nombreTeamG*/
-        ) {
-            existe = 's';
-            return existe;
-        } else{
-            
-            equipo1Guardado = "";
-            equipo2Guardado = "";
-            retoDatos == null;
-            
-        }
+            }
 
-        }
-        
-    return existe;
 
+       
+
+        if (equipo1Guardado.nombreTeamG == equipo1.nombreTeamG  ||
+            equipo2Guardado.nombreTeamG == equipo1.nombreTeamG ) {
+            if(equipoLogueado.nombreTeamG == equipo1Guardado.nombreTeamG){
+            listaMisRetos.push(retoGuardado);
+                contador++;
+        } else {
+             listaMisRetos.push(retoGuardado);
+             contador++;
+        }
+            }
+         } return listaMisRetos;
+    } 
+
+function validarBtnAcceptarReto(encargado){
+    var persona = encargado;
+    var resultado = 'n';
+    if(persona == equipoLogueado.capitan ){
+        resultado = 's';
+    }else if (persona == equipoLogueado.jugador2) {
+                resultado = 's'; 
+    }else if (persona == equipoLogueado.jugador3) {
+                resultado = 's'; 
+    }else if (persona == equipoLogueado.jugador4) {
+                resultado = 's'; 
+    }else if (persona == equipoLogueado.jugador5) {
+                resultado = 's'; 
+    } return resultado;
+           
 }
+    
+
+

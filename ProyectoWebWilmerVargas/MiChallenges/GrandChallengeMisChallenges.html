@@ -73,75 +73,55 @@
                         </div>
                     </div>
                     
-                    <div  class="myform-middle">
-                            <div class="form-group">
-                        
-                            <h1 id = "equipo">Mis Challenges respuestas</h1>       
-                                 
-                            </div> 
-                            <table id = "tabla1" class ="tabla">
+                    <div class="myform-middle">
+                        <div class="form-group">
+
+                            <h1 id="equipo">Challenges</h1>
+
+                        </div>
+
+                        <table class="table table-hover" id="tblMisRetos">
+                            <thead>
                                 <tr>
-                                   <th>No.</th>  
-                                   <th>Equipo</th>
-                                   <th>Capitan.</th>
-                                   <th>Telefono</th>
-                                   <th>Cancha </th>
-                                   <th>Fecha</th> 
-                                   <th>Hora</th> 
-                                   <th>Aceptar o Rechazar</th>
+                                    <th>No.</th>
+                                    <th>Equipo</th>
+                                    <th>Usuario</th>
+                                    <th>Telefono</th>
+                                    <th>Cancha </th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Eliminar</th>
+                                    <th>Aceptar</th>
+
                                 </tr>
-                                
-                                <tr>
-                                   <td>1</td>
-                                   <td>Pitufos</td>
-                                   <td>Carlos</td>
-                                   <td>88888888</td>
-                                    <td>HermanosS2</td>
-                                    <td>10/7/2017</td>
-                                    <td>8:00pm</td>
-                                    <td><button type="button" class="btn btn-success">✔</button><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                
-                                
-                                <tr>
-                                   <td>2</td>
-                                   <td>Pitufos</td>
-                                   <td>Carlos</td>
-                                   <td>88888888</td>                       
-                                   <td>HermanosS2</td>
-                                    <td>17/7/2017</td>
-                                    <td>8:00pm</td>
-                                    <td><button type="button" class="btn btn-success">✔</button><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>3</td> 
-                                   <td>Pitufos</td>
-                                   <td>Carlos</td>
-                                   <td>88888888</td>
-                                   
-                                   <td>HermanosS2</td>
-                                    <td>24/7/2017</td>
-                                    <td>8:00pm</td>
-                                    <td><button type="button" class="btn btn-success">✔</button><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                                
-                                <tr>
-                                   <td>4</td>
-                                   <td>Pitufos</td>
-                                   <td>Carlos</td>
-                                   <td>88888888</td>
-                                    <td>HermanosS2</td>
-                                    <td>7/8/2017</td>
-                                    <td>8:00 pm</td>
-                                     <td><button type="button" class="btn btn-success">✔</button><button type="button" class="btn btn-danger">X</button></td>
-                                </tr>
-                            </table>
-                        
-                        
-                    </div> 
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
                   
+                  <div id="delete" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h4 class="modal-title">Aceptar Reto</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <strong>Estas seguro que quieres aceptar?</strong>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="del" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     
                         
                  
@@ -177,9 +157,8 @@
       </div>
       
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="https://maxcdn.bootstrapodn.com/bootstrap/3.3.4/bootstrap.min.ja"></script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.ja"></script>
-    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="MisChallenges.js"></script>
   </body>
 </html>
