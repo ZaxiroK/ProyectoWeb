@@ -23,8 +23,8 @@ var usuarioLogueado = {
 };
 traerUsuarioLogueado();
 traerEquipoDelJugador();
-
-equiposRegistrados = [];
+getEquiposRegistrados();
+var equiposRegistrados = getEquiposRegistrados();
 cargarMiEquipo();
 
 function traerUsuarioLogueado() {
@@ -94,7 +94,7 @@ function cargarMiEquipo() {
         
         gridBody = document.querySelector("#tblMiEquipo tbody");
       
-        for(var i = 1; i < 4; i++){
+        for(var i = 1; i < 5; i++){
             var datos = eliminarEquipoPosicion();
             MiEquipoTabla.push(datos);
             
@@ -107,13 +107,13 @@ function cargarMiEquipo() {
             //contador++;
         var tr = document.createElement("tr"),
             tdNumero = document.createElement("td"),
-            tdID = document.createElement("td"),
+            tdIDG = document.createElement("td"),
             tdJugador = document.createElement("td"),
             tdElimnar = document.createElement("td"),
             btnEliminar = document.createElement("button");
 
         tdNumero.innerHTML = contadorCampos +1;
-        tdID.innerHTML = x.IDG
+        tdIDG.innerHTML = x.IDG;
         
            tdJugador.innerHTML = x.jugadorG;
     
@@ -128,7 +128,7 @@ function cargarMiEquipo() {
 
                 $("#del").click(function() {
                     //for (var i = 0; i < arregloListaDelete.length; i++) {
-                    eliminarPersonaDeEquipo(x.contadorCampos);
+                    eliminarPersonaDeEquipo(x.IDG);
                 });
             });
 
@@ -138,7 +138,7 @@ function cargarMiEquipo() {
         tdElimnar.appendChild(btnEliminar, contadorCampos);
 
         tr.appendChild(tdNumero);
-        tr.appendChild(tdID)
+        tr.appendChild(tdIDG)
         tr.appendChild(tdJugador);
         tr.appendChild(tdElimnar);
 
@@ -168,7 +168,7 @@ function cargarMiEquipo() {
 function eliminarPersonaDeEquipo(contador) {
     //var jugadorNuevo = usuarioLogueado;
     var posicion = contador;
-    var listEquiposRegistrados = getEquiposRegistradas();
+    var listEquiposRegistrados = equiposRegistrados;
     var player2 = "";
     var player3 = "";
     var player4 = "";
@@ -176,7 +176,7 @@ function eliminarPersonaDeEquipo(contador) {
 
     for (var i = 0; i < listEquiposRegistrados.length; i++) {
         if (equipoLogueado.nombreTeamG == listEquiposRegistrados[i].nombreTeamG) {
-            listEquiposRegistrados[i].usuario = equipoLogueado.capitan;
+            listEquiposRegistrados[i].capitan = equipoLogueado.capitan;
 
             if (contador == 1) {
                 player2 = "";
@@ -209,18 +209,17 @@ function eliminarPersonaDeEquipo(contador) {
             listEquiposRegistrados[i].jugador3 = player3;
             listEquiposRegistrados[i].jugador4 = player4;
             listEquiposRegistrados[i].jugador5 = player5;
-            listEquiposRegistrados[i].nombreTeamG = equipo.nombreTeamG;
-            listEquiposRegistrados[i].generoG = equipo.generoG;
-            listEquiposRegistrados[i].cantonG = equipo.cantonG;
-            listEquiposRegistrados[i].generoG = equipo.generoG;
-            listEquiposRegistrados[i].contraseniaG = equipo.contraseniaG;
+            listEquiposRegistrados[i].nombreTeamG = equipoLogueado.nombreTeamG;
+            listEquiposRegistrados[i].generoG = equipoLogueado.generoG;
+            listEquiposRegistrados[i].cantonG = equipoLogueado.cantonG;
+            listEquiposRegistrados[i].generoG = equipoLogueado.generoG;
+            listEquiposRegistrados[i].contraseniaG = equipoLogueado.contraseniaG;
 
 
 
 
             localStorage.setItem('equiposRegistrados', JSON.stringify(listEquiposRegistrados));
-            alert("Ingreso al equipo exitoso");
-            return;
+            cargarMiEquipo();
         }
     }
 
@@ -234,43 +233,40 @@ function eliminarEquipoPosicion() {
         IDG: 0,
         jugadorG: ""
     };
-    /*var player2 = capi;
-    var player3 = capi;
-    var player4 = capi;
-    var player5 = capi;*/
+   
     var MiEquipoArreglo = [];
     for(var i =contadorCampos; i < 4; i++){
-        if(i == 0){
+        if(i == 0 && equipos.capitan != ""){
             jugador.IDG = i
             jugador.jugadorG = equipos.capitan; 
             contadorPosicion = 1;
             contadorCampos = contadorPosicion;
             return jugador;
             
-        } else if (i == 1){
+        } else if (i == 1 && equipos.jugador2 != ""){
             jugador.IDG = i
             jugador.jugadorG = equipos.jugador2; 
             contadorPosicion = 2;
             contadorCampos = contadorPosicion;
             return jugador;
             
-        }else if (i == 2){
+        }else if (i == 2 && equipos.jugador3 != ""){
             jugador.IDG = i
             jugador.jugadorG = equipos.jugador3; 
             contadorPosicion = 3;
             contadorCampos = contadorPosicion;
             return jugador;
             
-        }else if (i == 3){
+        }else if (i == 3 && equipos.jugador4 != ""){
             jugador.IDG = i
-            jugador.jugadorG = equipos.jugador3; 
+            jugador.jugadorG = equipos.jugador4; 
             contadorPosicion = 4;
             contadorCampos = contadorPosicion;
             return jugador;
             
-        }else if (i == 4){
+        }else if (i == 4 && equipos.jugador5 != ""){
             jugador.IDG = i
-            jugador.jugadorG = equipos.jugador3; 
+            jugador.jugadorG = equipos.jugador5; 
             contadorPosicion = 5;
             contadorCampos = contadorPosicion ;
             return jugador;
