@@ -26,7 +26,7 @@ var usuarioLogueado = {
     contrasenia: ""
 };
 
-FillCombo();
+//FillCombo();
 traerUsuarioLogueado();
 traerEquipoDelJugador();
 asignarNombreLabel();
@@ -232,7 +232,7 @@ function asignarNombreLabel() {
     label.innerText = usuario.nombreG;
 }
 
-function FillCombo() {
+/*function FillCombo() {
     var comboProvincia = document.getElementById("combobox1").value;
 
     var canchas = [],
@@ -242,7 +242,7 @@ function FillCombo() {
     }
     var combo = document.getElementById("comboboxCanchas");
 
-    /* if(contadorCombobox > 0){
+    if(contadorCombobox > 0){
                for (var i = 0; i < combo.length; i++) {
                     for (var i = 0; i < canchas.length; i++) {
                  combo = document.getElementById("comboboxCanchas");
@@ -255,7 +255,7 @@ function FillCombo() {
                 } 
  
        }
-    }else{*/
+    }else{
     for (var i = 0; i < canchas.length; i++) {
         //if(canchas[i].provinciaG == comboProvincia ){
 
@@ -268,7 +268,7 @@ function FillCombo() {
 
         // }
     }
-}
+}*/
 
 function cargarMisRetosCreados() {
     var retos = [];

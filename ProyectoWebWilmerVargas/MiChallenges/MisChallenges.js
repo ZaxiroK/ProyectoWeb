@@ -254,17 +254,17 @@ function cargarMisRetosCreados() {
             tdCancha = document.createElement("td"),
             tdFecha = document.createElement("td"),
             tdHora = document.createElement("td");
-            if(validarBtnAcceptarReto(x.encargadoG) =="n"){
+            /*if(validarBtnAcceptarReto(x.encargadoG) =="n"){
                 btn = "n"
-            }
+            }*/
         
             var tdEliminar = document.createElement("td"),
             btnEliminar = document.createElement("button");
         
-            if(btn =="n"){
+            /*if(btn =="n"){
             var tdAceptar = document.createElement("td"),
             btnAceptar = document.createElement("button");
-            }
+            }*/
 
         tdNumero.innerHTML = contador + 1;
         tdID.innerHTML = x.IDG;
@@ -294,7 +294,7 @@ function cargarMisRetosCreados() {
         });
         
         
-        if(btn =="n"){
+        /*if(btn =="n"){
  
         btnAceptar.className = 'delete btn btn-success btn-sm glyphicon glyphicon-ok';
         btnAceptar.addEventListener('click', function() {
@@ -314,13 +314,13 @@ function cargarMisRetosCreados() {
 
         });
         }
-        
+        */
 
         
         tdEliminar.appendChild(btnEliminar);
-        if(btn =="n"){
+        /*if(btn =="n"){
         tdAceptar.appendChild(btnAceptar);
-        }
+        }*/
         tr.appendChild(tdNumero);
         tr.appendChild(tdID);
         tr.appendChild(tdEquipo);
@@ -331,7 +331,7 @@ function cargarMisRetosCreados() {
         tr.appendChild(tdHora);
         tr.appendChild(tdEliminar);
         if(btn =="n"){
-        tr.appendChild(tdAceptar);
+        //tr.appendChild(tdAceptar);
         }
 
 
