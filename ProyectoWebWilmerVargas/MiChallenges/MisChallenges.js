@@ -26,7 +26,6 @@ var usuarioLogueado = {
     contrasenia: ""
 };
 
-
 traerUsuarioLogueado();
 traerEquipoDelJugador();
 asignarNombreLabel();
@@ -302,7 +301,7 @@ function cargarMisRetosCreados() {
                     $('#delete').modal('show');
 
                     $("#del").click(function() {
-
+                        removeFromLocalStorage(contador);
                     });
                 
 
@@ -338,6 +337,20 @@ function cargarMisRetosCreados() {
  }
 }
 
+var retoTabla = {
+            IDG : i,
+            nombreTeamG : MisRetos[i].nombreTeamG,
+            encargadoG : MisRetos[i].encargadoG,
+            telefonoG : MisRetos[i].telefonoG,
+            canchaG : MisRetos[i].canchaG,
+            fechaG : MisRetos[i].fechaG,
+            horaG : MisRetos[i].horaG
+            
+            }
+            retos.push(retoTabla);
+            //arregloListaDelete.push(i);
+
+        
 
 function misMatches(){
     var equipo1 = equipoLogueado;
@@ -349,10 +362,11 @@ function misMatches(){
     var equipo1Guardado;
     var equipo2Guardado;
     var retoGuardado;
-    
+    var IDG;
     
     for (var i = 0; i < matchesExiste.length; i++) {
         contenedorMatches = matchesExiste[i];
+        IDG = i;
         for (var y = 0; y < contenedorMatches.length; y++) {
             contenedorMatches2 = contenedorMatches[y];
             
@@ -372,6 +386,7 @@ function misMatches(){
         if (equipo1Guardado.nombreTeamG == equipo1.nombreTeamG  ||
             equipo2Guardado.nombreTeamG == equipo1.nombreTeamG ) {
             if(equipoLogueado.nombreTeamG == equipo1Guardado.nombreTeamG){
+                
             listaMisRetos.push(retoGuardado);
                 contador++;
         } else {
@@ -398,6 +413,18 @@ function validarBtnAcceptarReto(encargado){
     } return resultado;
            
 }
-    
+
+function removeFromLocalStorage(index) {
+    var misRetos = [],
+        dataInLocalStorage = localStorage.getItem("retosRegistrados");
+
+    misRetos = JSON.parse(dataInLocalStorage);
+
+    misRetos.splice(index, 1);
+
+    localStorage.setItem("retosRegistrados", JSON.stringify(misRetos));
+
+    cargarMisRetosCreados();
+}
 
 

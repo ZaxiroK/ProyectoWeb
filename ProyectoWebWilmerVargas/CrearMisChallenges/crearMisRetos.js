@@ -11,7 +11,7 @@ var equipoLogueado = {
     nombreTeamG: "",
     categoriaG: "",
     provinciaG: "",
-    generoG: "",
+    generoG: ""
 
 }
 var usuarioLogueado = {
@@ -23,6 +23,16 @@ var usuarioLogueado = {
     usuario: "",
     contrasenia: ""
 };
+
+var retoGuardado = {
+    encargadoG: "",
+    telefonoG: "",
+    nombreTeamG: "",
+    canchaG: "",
+    fechaG: "",
+    horaG: "",
+    IDG: ""
+}
 
 //loadFromLocalStorage();
 FillCombo();
@@ -217,7 +227,9 @@ function getCanchasGuardadas(obj) {
 
 function cargarMisRetosCreados() {
     var retos = [];
+    //var arregloListaDelete = [];
     var MisRetos = [],
+    
         dataInLocalStorage = localStorage.getItem("retosRegistrados"),
         gridBody = document.querySelector("#tblMisRetos tbody");
 
@@ -227,17 +239,27 @@ function cargarMisRetosCreados() {
 
     for (var i = 0; i < MisRetos.length; i++) {
         if (equipoLogueado.nombreTeamG == MisRetos[i].nombreTeamG) {
-            var retoGuardado = MisRetos[i];
+            var retoTabla = {
+            IDG : i,
+            nombreTeamG : MisRetos[i].nombreTeamG,
+            encargadoG : MisRetos[i].encargadoG,
+            telefonoG : MisRetos[i].telefonoG,
+            canchaG : MisRetos[i].canchaG,
+            fechaG : MisRetos[i].fechaG,
+            horaG : MisRetos[i].horaG
+            
+            }
+            retos.push(retoTabla);
+            //arregloListaDelete.push(i);
 
-            retos.push(retoGuardado);
-
-        }
+        } 
     }
     gridBody.innerHTML = '';
 
     retos.forEach(function(x, i) {
         var tr = document.createElement("tr"),
             tdNumero = document.createElement("td"),
+            tdID = document.createElement("td"),
             tdEquipo = document.createElement("td"),
             tdUsuario = document.createElement("td"),
             tdTelefono = document.createElement("td"),
@@ -248,7 +270,8 @@ function cargarMisRetosCreados() {
             btnEliminar = document.createElement("button");
 
         tdNumero.innerHTML = i + 1;
-        tdEquipo.innerHTML = x.equipoG;
+        tdID.innerHTML = x.IDG;
+        tdEquipo.innerHTML = x.nombreTeamG;
         tdUsuario.innerHTML = x.encargadoG;
         tdTelefono.innerHTML = x.telefonoG;
         tdCancha.innerHTML = x.canchaG;
@@ -262,7 +285,8 @@ function cargarMisRetosCreados() {
                 $('#delete').modal('show');
 
                 $("#del").click(function() {
-                    removeFromLocalStorage(i);
+                    //for (var i = 0; i < arregloListaDelete.length; i++) {
+                    removeFromLocalStorage(x.IDG);
                 });
             });
 
@@ -272,6 +296,7 @@ function cargarMisRetosCreados() {
         tdElimnar.appendChild(btnEliminar);
 
         tr.appendChild(tdNumero);
+        tr.appendChild(tdID);
         tr.appendChild(tdEquipo);
         tr.appendChild(tdUsuario);
         tr.appendChild(tdTelefono);
@@ -301,7 +326,8 @@ function removeFromLocalStorage(index) {
 
     cargarMisRetosCreados();
 }
-/*
-function validarMisRetos(){
-    getRetosRegistrados
+
+/*function validarRegistroRetoABorrar(){
+     
+     retosRegistrados 
 }*/
