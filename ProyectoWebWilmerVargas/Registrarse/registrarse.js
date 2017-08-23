@@ -40,7 +40,7 @@ function validar() {
 //guarda los datos de la persona registrada
 function guardar() {
 
-    var pkey, nombre, apellido, genero, telefono, usuario, contrasenia;
+    var pkey, nombre, apellido,/* genero,*/ telefono, usuario, contrasenia;
     getContadorPersonasPkeys(pk);
     if (pk == 0) {
         pkey = pk + 1;
@@ -51,15 +51,15 @@ function guardar() {
 
     nombre = document.getElementById("form-firtsname").value;
     apellido = document.getElementById("form-lastname").value;
-    genero = document.getElementById("form-genero").value;
-    var sexo;
+    //genero = document.getElementById("form-genero").value;
+    /*var sexo;
 
     if (document.getElementById('hombre').checked) {
         sexo = document.getElementById('hombre').value;
 
     } else if (document.getElementById('mujer').checked) {
         sexo = document.getElementById('mujer').value;
-    }
+    }*/
 
     telefono = document.getElementById("form-phone").value;
     usuario = document.getElementById("form-user").value;
@@ -69,7 +69,7 @@ function guardar() {
         pkG: pkey,
         nombreG: nombre,
         apellidoG: apellido,
-        generoG: sexo,
+        //generoG: sexo,
         telefonoG: telefono,
         usuarioG: usuario,
         contraseniaG: contrasenia

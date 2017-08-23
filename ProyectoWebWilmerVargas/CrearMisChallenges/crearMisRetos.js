@@ -48,20 +48,20 @@ function traerEquipoDelJugador() {
     var listaEquipos = getEquiposRegistrados();
     var miEquipo = 'n';
     for (var i = 0; i < listaEquipos.length; i++) {
-        if (listaEquipos[i].capitan == usuarioLogueado.nombreG) {
+        if (listaEquipos[i].capitan == usuarioLogueado.usuarioG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
-        } else if (listaEquipos[i].jugador2 == usuarioLogueado.nombreG) {
+        } else if (listaEquipos[i].jugador2 == usuarioLogueado.usuarioG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
-        } else if (listaEquipos[i].jugador3 == usuarioLogueado.nombreG) {
+        } else if (listaEquipos[i].jugador3 == usuarioLogueado.usuarioG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
-        } else if (listaEquipos[i].jugador4 == usuarioLogueado.nombreG) {
+        } else if (listaEquipos[i].jugador4 == usuarioLogueado.usuarioG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
 
-        } else if (listaEquipos[i].jugador5 == usuarioLogueado.nombreG) {
+        } else if (listaEquipos[i].jugador5 == usuarioLogueado.usuarioG) {
             equipoLogueado = listaEquipos[i];
             return equipoLogueado;
 
@@ -130,7 +130,7 @@ function btnEnviarChallenge() {
     usuarioLogueado = traerUsuarioLogueado();
     equipoLogueado = traerEquipoDelJugador();
 
-    usuario = usuarioLogueado.nombreG;
+    usuario = usuarioLogueado.usuarioG;
     capitan = equipoLogueado.capitan;
     telefono = usuarioLogueado.telefonoG;
     nombreTeam = equipoLogueado.nombreTeamG;

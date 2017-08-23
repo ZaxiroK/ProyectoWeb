@@ -33,26 +33,26 @@ function btnMiEquipoValidar(){
     var tieneEquipo = 'n';    
     
     for (var i = 0; i < equipos.length; i++) {
-        if(usuarioLogueado.nombreG == equipos[i].capitan){
+        if(usuarioLogueado.usuarioG == equipos[i].capitan){
             tieneEquipo = 's';
             return tieneEquipo;
             
-        }else if(usuarioLogueado.nombreG == equipos[i].jugador2){
+        }else if(usuarioLogueado.usuarioG == equipos[i].jugador2){
             location.href ="../MiEquipo/GranChallengeMiEquipo.html";
             tieneEquipo = 's';
             return tieneEquipo;
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador3){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador3){
             //location.href ="../MiEquipo/GranChallengeMiEquipo.html";
             tieneEquipo = 's';
             return tieneEquipo;
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador4){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador4){
             //location.href ="../MiEquipo/GranChallengeMiEquipo.html";
             tieneEquipo = 's';
             return tieneEquipo;
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador5){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador5){
             //location.href ="../MiEquipo/GranChallengeMiEquipo.html";
             tieneEquipo = 's';
             return tieneEquipo;
@@ -112,26 +112,26 @@ function validarBtnGrandChallenge(){
     
     for (var i = 0; i < equipos.length; i++) {
         var existe = 'n';
-        if(usuarioLogueado.nombreG == equipos[i].capitan){
+        if(usuarioLogueado.usuarioG == equipos[i].capitan){
             return existe = 's';
             
             
-        }else if(usuarioLogueado.nombreG == equipos[i].jugador2){
+        }else if(usuarioLogueado.usuarioG == equipos[i].jugador2){
             return existe = 's';
             
            
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador3){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador3){
             return existe = 's';
             
             
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador4){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador4){
             return existe = 's';
             
             
             }
-        else if(usuarioLogueado.nombreG == equipos[i].jugador5){
+        else if(usuarioLogueado.usuarioG == equipos[i].jugador5){
             return existe = 's';
             }
            
