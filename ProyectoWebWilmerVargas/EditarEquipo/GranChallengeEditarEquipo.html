@@ -58,12 +58,12 @@
                     
                       <select id = "combobox">
                                 <option>Futbol 5</option>
-                                <option>Futbol 7</option>
+                                <!--<option>Futbol 7</option>
                                 <option>Futbol 11</option>
                                 <option>Basketball</option>
                                 <option>Tennis</option>
                                 <option>Football</option>
-                                <option>Baseball</option>
+                                <option>Baseball</option>-->
                       </select>
                        
                       </div>
@@ -81,7 +81,7 @@
                       </select>
                        
                       </div>
-                  
+                  <!--
                       <div class="form-group">
                     
                       <select id = "combobox2">
@@ -94,7 +94,7 @@
                                 <option>Limón</option>
                       </select>
                        
-                      </div>
+                      </div>-->
                     <div class="myform-top">
                         <div class="myform-top-left">
                           <h3>Edita tu equipo y busca un Challenge</h3>
@@ -113,8 +113,8 @@
                         <div class="form-group">
                               
                             
-                            
-                            <input type="text" name="form-teamName" placeholder="Nombre de equipo.." class="form-control" id="form-teamName">
+                            <label id="nombreEquipo" for = "name">Equipo</label> 
+                            <!--<input type="text" name="form-teamName" placeholder="Nombre de equipo.." class="form-control" id="form-teamName">-->
                         </div>
                         <div class="myform-middle-categoria">
                         <h1 id ="categoriaTitulo">Categoria</h1>
@@ -126,7 +126,7 @@
                         <h1 id ="provincia">Provincia</h1>
                         
                         </div>  
-                        <div class="myform-middle-categoria">
+                        <!--<div class="myform-middle-categoria">
                         <h1 id ="canton">Canton</h1>
                         
                         </div>  
@@ -135,16 +135,16 @@
                         </div>
                         <div class="form-group">
                             <input type="text" name="form-rID" placeholder="ID.." class="form-control" id="form-ID">
+                        </div>-->
+                          <div class="form-group">
+                            <input type="password" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
                         </div>
                           <div class="form-group">
-                            <input type="text" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
-                        </div>
-                          <div class="form-group">
-                            <input type="text" name="form-passwordTeamRepeat" placeholder="Repetir contraseña del equipo.." class="form-control" id="form-passwordTeamRepeat">
+                            <input type="password" name="form-passwordTeamRepeat" placeholder="Repetir contraseña del equipo.." class="form-control" id="form-passwordTeamRepeat">
                         </div>
                           
-                        <button type="submit" class="mybtn">Guardar cambios..</button>
-                        <div class="form-group">
+                        <button type="submit" class="mybtn" onclick="validar();">Guardar cambios..</button>
+                        <!--<div class="form-group">
                                 
                                 <form action="" class="formulario">
 			                         <div class="radio">
@@ -160,7 +160,7 @@
                                         </div>
 		
 		                          </form>
-                            </div>  
+                            </div>  -->
                       </form>
                     </div>
               </div>
@@ -183,9 +183,7 @@
       </div>
       
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
-    <script src="https://maxcdn.bootstrapodn.com/bootstrap/3.3.4/bootstrap.min.ja"></script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.ja"></script>
-    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="editarEquipo.js"></script>
   </body>
 </html>
