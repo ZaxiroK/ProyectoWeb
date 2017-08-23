@@ -94,10 +94,11 @@ function cargarMiEquipo() {
         
         gridBody = document.querySelector("#tblMiEquipo tbody");
       
-        for(var i = 1; i < 5; i++){
-            var datos = eliminarEquipoPosicion();
+        for(var i = 0; i < 5; i++){
+            var datos = EquipoPosicion();
+            if(datos != null){
             MiEquipoTabla.push(datos);
-            
+            }
         }
     gridBody.innerHTML = '';
     
@@ -219,15 +220,16 @@ function eliminarPersonaDeEquipo(contador) {
 
 
             localStorage.setItem('equiposRegistrados', JSON.stringify(listEquiposRegistrados));
-            cargarMiEquipo();
+            
         }
-    }
-
+    }contadorCampos = 0;
+    cargarMiEquipo();
+    
 
 }
 
-function eliminarEquipoPosicion() {
-    var equipos = equipoLogueado;
+function EquipoPosicion() {
+    var equipos = traerEquipoDelJugador();
     var arreglo = [];
     var jugador = {
         IDG: 0,
@@ -235,7 +237,7 @@ function eliminarEquipoPosicion() {
     };
    
     var MiEquipoArreglo = [];
-    for(var i =contadorCampos; i < 4; i++){
+    for(var i =contadorCampos; i < 5; i++){
         if(i == 0 && equipos.capitan != ""){
             jugador.IDG = i
             jugador.jugadorG = equipos.capitan; 
@@ -275,6 +277,7 @@ function eliminarEquipoPosicion() {
     
         
     }
+    
    
     }
     
