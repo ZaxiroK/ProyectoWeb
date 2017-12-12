@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+        //var_dump($players);
+        //die;
+
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -25,7 +38,7 @@
                         <span class= "icon-bar"></span>
                         <span class= "icon-bar"></span>
                     </button>
-                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
                    <i class="fa fa-arrow-left"></i>
                    <a href="#" class="navbar-brand">Unirse a equipo</a>    
                 </div>
@@ -33,8 +46,10 @@
                 <!-- Inicia Menu -->
                 <div class ="collapse navbar-collapse" id ="navegacion-Wil">
                     <label id ="bienvenido" for = "name  ">Bienvenido</label> 
-                    <label id="usuario" for = "name">Usuario</label> 
-                    <a href= "../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="btn btn-lg btn-primary navbar-right">Menu principal</a>
+                    <label id="usuario" for = "name">
+                    <?php echo($_SESSION[ 'userName']);?>
+                    </label> 
+                    <a href= "cerrarSession.php" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
                     
                   </div>  
              </div>
@@ -67,24 +82,23 @@
                         
                         
                     <div class="myform-bottom">
-                      <form role="form" action="" method="post" class="">
+                      <form role="form" action="unirseEquipo.php" method="post" class="">
                      
                           
                         <div class="form-group">
                               
                             
                             
-                            <input type="text" name="form-teamName" placeholder="nombre equipo" class="form-control" id="form-teamName">
-                        </div>
-                         
-                       
-                          <div class="form-group">
-                            <input type="password" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
-                        </div>
+                        <div class="form-group">
+                        <input type="text" name="teamName" placeholder="Nombre del equipo.." required class="form-control" >
+                    </div>
+                      <div class="form-group">
+                        <input type="password" name="teamPassword" placeholder="Contraseña del equipo..." required class="form-control" >
+                    </div>
                           
                           
-                        <a href="../UnirseEquipo/GranChallengeUnirseEquipo.html" class="btn btn-lg btn-success" id="bntRegistrar" onclick="validar();">Unirse a Equipo</a>    
-                          <a href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class= "btn btn-lg btn-default">Cancelar</a>
+                        <button type = "submit" class= "btn btn-lg btn-success" name="submit" id="bntUnirse" >Unirse a equipo</button>    
+                          <a href ="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class= "btn btn-lg btn-default">Cancelar</a>
                         
                       </form>
                     </div>
@@ -111,6 +125,6 @@
     
    
     <script src="../js/jquery-3.2.1.min.js"></script>
-      <script src="unirserEquipo.js"></script>
+      <!--<script src="unirserEquipo.js"></script>-->
   </body>
 </html>

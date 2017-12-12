@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +40,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                    <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
 
                     <i class="fa fa-arrow-left"></i>
                     <a href="#" class="navbar-brand">Mi perfil</a>
@@ -36,10 +48,9 @@
 
                 <!-- Inicia Menu -->
                 <div class="collapse navbar-collapse" id="navegacion-Wil">
-                    <label id="bienvenido" for="name  ">Bienvenido</label>
-                    <label id="usuario" for="name">Usuario</label>
-                    <a href="../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right" id = "CerrarSesion">Cerrar Sesión</a>
-
+                <a href="cerrarSession.php" class="btn btn-lg btn-primary navbar-right" id="btnCerrarSesion">Cerrar Sesion</a>
+                <label class= "navbar-right" for="name"><?php echo($_SESSION['userName']);?>    </label>
+                <label class= "navbar-right"  id="bienvenido"  for="name  ">Bienvenido</label>
                 </div>
             </div>
         </nav>
@@ -68,49 +79,41 @@
                             <i class="fa fa-user"></i>
                         </div>
                     </div>
+
                     <div class="myform-bottom">
-                        <form role="form" action="" method="post" class="">
-                            <div class="form-group">
-                                <tr>
-                                    <td>
-                                        <input type="file" name="Picture"> </td>
-                                </tr>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="form-username" placeholder="Nombre de usuario..." class="form-control" id="form-username">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="form-firtsname" placeholder="Primer nombre..." class="form-control" id="form-firtsname">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="form-lastname" placeholder="Primer apellido..." class="form-control" id="form-lastname">
-                            </div>
-                            <div class="form-group">
-                            
-                            <input type="text" name="form-email" placeholder="Correo electronico" class="form-control" id="form-email">
-                           </div>
-                            <div class="form-group">
-                                <input type="text" name="form-phone" placeholder="Telefono..." class="form-control" id="form-phone">
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="password" name="form-password" placeholder="Contraseña..." class="form-control" id="form-password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="form-passwordRepeat" placeholder="Repetir contraseña..." class="form-control" id="form-passwordRepeat">
-                            </div>
+                     <form role="form" method="post" class="form-login" action "miPerfil.php">
+                        <div class="form-group">
+                           <input type="text" name="userName" placeholder="Usuario..." required class="form-control" id="form-username" value = <?php echo($_SESSION['userName']);?>>
+                        </div>
+                        <div class="form-group">
+                           <input type="text" name="name" placeholder="Nombre..." required class="form-control" id="form-name" value = <?php echo($_SESSION['name']);?>>
+                        </div>
+                        <div class="form-group">
+                           <input type="text" name="lastName" placeholder="Apellido..." required class="form-control" id="form-lastname" value = <?php echo($_SESSION['lastName']);?>>
+                        </div>
+                        <div class="form-group">
+                           <input type="text" name="phone" placeholder="Telefono..." required class="form-control" id="form-phone" value = <?php echo($_SESSION['phone']);?>>
+                        </div>
+                        <div class="form-group">
+                           <input type="password" name="password" placeholder="Contraseña..." required class="form-control" id="form-password" >
+                        </div>
+                        <div class="form-group">
+                           <input type="password" name="passwordRepeat" placeholder="Repetir contraseña..." required class="form-control" id="form-repeatPassword" >
+                        </div>
+                        <button type = "submit" class= "btn btn-lg btn-success" name = "edit" id="bntLogin" >Editar</button>
+                        <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="btn btn-lg btn-default">Cancelar</a>
 
-                            <div class="btn-group">
+                        <?php
 
-                                <a href="../MiPerfil/GranChallengeMiPerfil.html" class="btn btn-lg btn-success " onclick="validar();">Guardar cambios</a>
-                                <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="btn btn-lg btn-default">Cancelar</a>
+                        include('miPerfill.php');
 
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                        ?>
 
+                        
+                     </form>
+                  </div>
             </div>
+        </div>
             <div class="row">
                 <div class="col-sm-12 mysocial-login">
                     <h3>...Siguenos por:</h3>
@@ -147,7 +150,9 @@
 
     <script src="../js/jquery-3.2.1.min.js"></script>
       <script src="../js/bootstrap.min.js"></script>
-    <script src="miPerfil.js"></script>
+    <!--<script src="miPerfil.js"></script>-->
 </body>
 
+
 </html>
+

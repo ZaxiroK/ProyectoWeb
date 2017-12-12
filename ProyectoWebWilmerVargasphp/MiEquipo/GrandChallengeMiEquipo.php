@@ -1,3 +1,34 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    $misRetosAceptados = $_SESSION['listRetosAceptados'];
+    $players = array(
+        1 => array(
+             "player" => $_SESSION['player1']
+              
+        ),
+        2 => array(
+            "player" => $_SESSION['player2'] 
+       ),
+        3 => array(
+            "player" => $_SESSION['player3'] 
+       ),
+        4 => array(
+            "player" => $_SESSION['player4'] 
+       ),
+        5 => array(
+        "player" => $_SESSION['player5'] 
+        )
+    );
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+        //var_dump($players);
+        //die;
+
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -25,7 +56,7 @@
                         <span class= "icon-bar"></span>
                         <span class= "icon-bar"></span>
                     </button>
-                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
                     <i class="fa fa-arrow-left"></i>
                     <a href="#" class="navbar-brand">Mi equipo</a>
                 </div>
@@ -33,8 +64,10 @@
                 <!-- Inicia Menu -->
                 <div class ="collapse navbar-collapse" id ="navegacion-Wil">
                     <label id ="bienvenido" for = "name  ">Bienvenido</label> 
-                    <label id="usuario" for = "name">Usuario</label> 
-                    <a href= "../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
+                    <label id="usuario" for = "name">
+                    <?php echo($_SESSION[ 'userName']);?>
+                    </label> 
+                    <a href= "cerrarSession.php" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
                     
                   </div>  
              </div>
@@ -66,33 +99,54 @@
                     </div>
                   
                     <div  class="myform-middle">
-                        <label id = "team">Nombre del equipo</label>
+                        <label id = "team" for = "name">
+                    <?php echo($_SESSION[ 'teamName']);?>
+                    </label> 
                         <br>
-                        <label id = "team">Categoria</label>
+                        <label id = "team" for = "name">
+                    <?php echo($_SESSION[ 'category']);?>
+                    </label> 
                         <br>
-                        <label id = "team">Genero</label>
+                        <label id = "team"for = "name">
+                    <?php echo($_SESSION[ 'gender']);?>
+                    </label> 
+
+                    <br>
 
                         <div class="myform-middle-left">
                               <table class="table table-hover" id="tblMiEquipo">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>ID</th>
+                                    <!--<th>No.</th>
+                                    <th>ID</th>-->
                                     <th>Jugador</th>
                                     <th>Eliminar</th>
                                     
 
                                 </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <?php foreach($players as $player){?>
+                                <tr aling= "center">
+                                
+                                <td><?php echo "$player[player]" ?></td>
+                                
+                                <td><a href= "miEquipo.php?eliminar=<?php echo "$player[player]"; ?>">Eliminar</a></td>
+                                
+                    
+                            </tr>
+                            
+                            <?php 
+                                }
+                            ?>
                         </table>
                            
                             
                         </div>
+
+                           
                         
                         <div class="myform-middle-right">
+                        <label id = "">Encuentros</label>
                           <table class="table table-hover" id="tblMisRetos">
                             <thead>
                                 <tr>
@@ -104,9 +158,21 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            
+                            <?php $i =0;
+                            foreach($misRetosAceptados as $encuentro){
+                                $i++;
+                                ?>
+                                <tr aling= "center">
+                                <td><?php echo "$i"?></td>
+                                <td><?php echo "$encuentro[equipoRetante]" ?></td>
+                                <td>vs</td>
+                                <td><?php echo "$encuentro[equipoContrincante]" ?></td>
+                            </tr>
+                            
+                            <?php 
+                                }
+                            ?>
                         </table>
                             
                         </div>
@@ -116,10 +182,10 @@
                       <form role="form" action="" method="post" class="">
                             
                        
-                        <a href ="../BuscarChallenge/GrandChallengeBuscar.html" class= "btn btn-lg btn-warning">Buscar Challenge..</a>
+                        <a href ="../BuscarChallenge/GrandChallengeBuscar.php" class= "btn btn-lg btn-warning">Buscar Challenge..</a>
                         <!--<a href ="" class= "btn btn-lg btn-default">Elminar Equipo..</a>-->
                         <div class="form-group">
-                         <label id = "vs">Encuentros</label>       
+                             
                                
                             </div>  
                       </form>
@@ -167,6 +233,6 @@
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src= "MiEquipo.js"></script>
+    <!--<script src= "MiEquipo.js"></script> -->
   </body>
 </html>

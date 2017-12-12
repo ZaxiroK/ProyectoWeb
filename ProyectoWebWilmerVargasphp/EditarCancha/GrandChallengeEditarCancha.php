@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+        //var_dump($players);
+        //die;
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -25,7 +39,7 @@
                         <span class= "icon-bar"></span>
                         <span class= "icon-bar"></span>
                     </button>
-                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
                    <i class="fa fa-arrow-left"></i>
                    <a href="#" class="navbar-brand">Editar Cancha</a>    
                 </div>
@@ -33,8 +47,8 @@
                 <!-- Inicia Menu -->
                 <div class ="collapse navbar-collapse" id ="navegacion-Wil">
                     <label id ="bienvenido" for = "name  ">Bienvenido</label> 
-                    <label id="usuario" for = "name">Usuario</label> 
-                    <a href= "../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
+                    <label id="usuario" for="name"><?php echo($_SESSION['userName']);?></label>
+                    <a href= "../PrincipalLogin/GrandChallengePrincipalLogin.php" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
                     
                   </div>  
              </div>
@@ -55,7 +69,7 @@
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                   
-                  
+                  <!--
                     <div class="form-group">
                     
                       <select id = "combobox">
@@ -69,7 +83,7 @@
                       </select>
                        
                       </div>
-                        
+                       
                       <div class="form-group">
                     
                       <select id = "combobox1">
@@ -108,6 +122,7 @@
                       </select>
                        
                       </div>
+                       -->
                     <div class="myform-top">
                         <div class="myform-top-left">
                          
@@ -120,55 +135,54 @@
                         
                         
                     <div class="myform-bottom">
-                      <form role="form" action="" method="post" class="">
-                     
-                        <div class = "form-group">
-                          <tr >
-                          <td ><input type ="file" name = "Picture"> </td>
-                          </tr>
-                          </div>  
-                       
-                          
+                    <form role="form" action="editarCancha.php" method="post">
                         <div class="form-group">
-                              
-                            
-                            
-                            <input type="text" name="form-fieldName" placeholder="Nombre de la cancha.." class="form-control" id="form-teamName">
+                            <input type="text" name="canchaName" placeholder="Nombre de la cancha.." required class="form-control" id="form-teamName" value = <?php echo($_SESSION['canchaName']);?>>
                         </div>
+
+          
+                        
                         <div class="myform-middle-categoria">
-                        <h1 id ="categoriaTitulo">Categoria</h1>
-                        
-                        </div>
-                          
-                        
-                         
-                        <div class="myform-middle-categoria">
-                        <h1 id ="provincia">Provincia</h1>
-                        
-                        </div>  
-                        <div class="myform-middle-categoria">
-                        <h1 id ="canton">Canton</h1>
-                        
-                        </div>  
-                          
+                            <h1 id="categoriaTitulo" class="col-sm-4">Categoria</h1>
+                            <select name= "category" class=" form-control">
+                            <option value="futbol 5">futbol 5</option>
+                                    <!--<option>Futbol 7</option>
+                                    <option>Futbol 11</option>
+                                    <option>Basketball</option>
+                                    <option>Tennis</option>
+                                    <option>Football</option>
+                                    <option>Baseball</option>-->
+                            </select>
+                        </div>                            
                         <div class="form-group">
-                            <input type="text" name="form-boss" placeholder="Nombre del encargado.." class="form-control" id="form-boss">
+                        <h1 id="categoriaTitulo" class="col-sm-4">Provincia</h1>
+                            <select name="provincia" class=" form-control">
+                                <option value="Alajuela">Alajuela</option>
+                                <option value="San José">San José</option>
+                                <option value="Cartago">Cartago</option>
+                                <option value="Heredia">Heredia</option>
+                                <option value="Guanacaste">Guanacaste</option>
+                                <option value="Puntarenas">Puntarenas</option>
+                                <option value="Limón">Limón</option>
+                            </select>        
                         </div>
-                         
+
                         <div class="form-group">
-                            <input type="text" name="form-phone" placeholder="Número de la cancha" class="form-control" id="form-id">
-                        </div>    
-                         
-                          
-                          <div class="form-group">
-                            <input type="text" name="form-cellphone" placeholder="Celular..." class="form-control" id="form-cellphone">
+                        <input type="text" name="encargadoName" placeholder="Encargado de la cancha.." required class="form-control" id="form-teamName" value = <?php echo($_SESSION['encargadoName']);?>>
                         </div>
-                          
-                        
-                        <button type="submit" class="mybtn">Guardar cambios..</button>
-                         
-                      </form>
-                    </div>
+                        <div class="form-group">
+                        <input type="text" name="phone" placeholder="Telefono.." required class="form-control" id="form-teamName" value = <?php echo($_SESSION['canchaPhone']);?>>
+                        </div>
+                        <div class="form-group">
+                        <input type="text" name="cellphone" placeholder="Celular.."  class="form-control" id="form-teamName" value = <?php echo($_SESSION['canchaCellphone']);?>>
+                        </div>
+
+
+                        <!--<a href="../CrearEquipo/GranChallengeCrearEquipo.html" class="btn btn-lg btn-success" id="bntRegistrar" onclick="validar();">Registrar Equipo</a>-->
+                        <button type = "submit" class= "btn btn-lg btn-success" name="submit" id="bntRegistrar" >Guardar</button>
+                        <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="btn btn-lg btn-default">Cancelar</a>
+                    </form>
+                </div>
               </div>
             </div>
             <div class="row">

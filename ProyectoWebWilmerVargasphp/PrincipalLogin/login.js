@@ -1,4 +1,4 @@
-var personasRegistradas = [];
+//var personasRegistradas = [];
 var personaLogueadaInformacion = {
     pk: "",
     nombre: "",
@@ -19,16 +19,16 @@ function validar() {
         alert("Nombre requerido");
     } else if (document.getElementById("form-password").value == 0) {
         alert("Contraseña requerida");
-    } else if (verificacionLogin(usuario, pw) == 'n') {
+    } /*else if (verificacionLogin(usuario, pw) == 'n') {
         alert("El nombre de usuario o contraseña son incorrectos")
     } else {
 
         location.href ="../MenuPrincipal/GrandChallengeMenuPrincipal.html"
-    }
+    }*/
 
 }
 
-function getPersonasRegistradas() {
+/*function getPersonasRegistradas() {
     var storagePersonas = localStorage.getItem('storagePersonasRegistradas')
     if (storagePersonas == null) {
         personasRegistradas = [];
@@ -38,9 +38,9 @@ function getPersonasRegistradas() {
     }
 
     return personasRegistradas;
-}
+}*/
 
-function verificacionLogin(userName, pw) {
+/*function verificacionLogin(userName, pw) {
     var user = userName;
     var pw = pw;
     var existe = 'n';
@@ -78,9 +78,9 @@ function verificacionLogin(userName, pw) {
         }
     }
     return existe;
-}
+}*/
 
-function personaLogueada(persona) {
+/*function personaLogueada(persona) {
     localStorage.setItem('personaLogueada', JSON.stringify(persona))
 
-}
+}*/

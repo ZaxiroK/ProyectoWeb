@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+        //var_dump($players);
+        //die;
+
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -25,7 +38,7 @@
                         <span class= "icon-bar"></span>
                         <span class= "icon-bar"></span>
                     </button>
-                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
                     <i class="fa fa-arrow-left"></i>
                     <a href="#" class="navbar-brand">Editar equipo</a>
                 </div>
@@ -33,8 +46,10 @@
                 <!-- Inicia Menu -->
                 <div class ="collapse navbar-collapse" id ="navegacion-Wil">
                     <label id ="bienvenido" for = "name  ">Bienvenido</label> 
-                    <label id="usuario" for = "name">Usuario</label> 
-                    <a href= "../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
+                    <label id="usuario" for = "name">
+                    <?php echo($_SESSION[ 'userName']);?>
+                    </label> 
+                    <a href= "cerrarSession.php" class="btn btn-lg btn-primary navbar-right">Cerrar Sesión</a>
                     
                   </div>  
              </div>
@@ -54,33 +69,7 @@
             </div>
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
-                    <div class="form-group">
-                    
-                      <select id = "combobox">
-                                <option>Futbol 5</option>
-                                <!--<option>Futbol 7</option>
-                                <option>Futbol 11</option>
-                                <option>Basketball</option>
-                                <option>Tennis</option>
-                                <option>Football</option>
-                                <option>Baseball</option>-->
-                      </select>
-                       
-                      </div>
-                        
-                      <div class="form-group">
-                    
-                      <select id = "combobox1">
-                                <option>San José</option>
-                                <option>Alajuela</option>
-                                <option>Cartago</option>
-                                <option>Heredia</option>
-                                <option>Guanacaste</option>
-                                <option>Puntarenas</option>
-                                <option>Limón</option>
-                      </select>
-                       
-                      </div>
+              
                   <!--
                       <div class="form-group">
                     
@@ -107,25 +96,43 @@
                         
                         
                     <div class="myform-bottom">
-                      <form role="form" action="" method="post" class="">
+                      <form role="form" action="editarEquipo.php" method="post" class="">
                      
                           
                         <div class="form-group">
                               
                             
-                            <label id="nombreEquipo" for = "name">Equipo</label> 
+                        <label id = "team" for = "name">
+                    <?php echo($_SESSION[ 'teamName']);?>
+                    </label> 
                             <!--<input type="text" name="form-teamName" placeholder="Nombre de equipo.." class="form-control" id="form-teamName">-->
                         </div>
+
                         <div class="myform-middle-categoria">
-                        <h1 id ="categoriaTitulo">Categoria</h1>
-                        
-                        </div> 
-                        
+                                <h1 id="categoriaTitulo" class="col-sm-4">Categoria</h1>
+                                <select name= "category" class=" form-control">
+                                <option value="futbol 5">futbol 5</option>
+                                        <!--<option>Futbol 7</option>
+                                        <option>Futbol 11</option>
+                                        <option>Basketball</option>
+                                        <option>Tennis</option>
+                                        <option>Football</option>
+                                        <option>Baseball</option>-->
+                                </select>
+                            </div>                            
+                            <div class="form-group">
+                            <h1 id="provi" class="col-sm-4">Provincia</h1>
+                                <select name="provincia" class=" form-control">
+                                    <option value="Alajuela">Alajuela</option>
+                                    <option value="San José">San José</option>
+                                    <option value="Cartago">Cartago</option>
+                                    <option value="Heredia">Heredia</option>
+                                    <option value="Guanacaste">Guanacaste</option>
+                                    <option value="Puntarenas">Puntarenas</option>
+                                    <option value="Limón">Limón</option>
+                                </select>        
+                            </div>
                          
-                        <div class="myform-middle-categoria">
-                        <h1 id ="provincia">Provincia</h1>
-                        
-                        </div>  
                         <!--<div class="myform-middle-categoria">
                         <h1 id ="canton">Canton</h1>
                         
@@ -137,13 +144,14 @@
                             <input type="text" name="form-rID" placeholder="ID.." class="form-control" id="form-ID">
                         </div>-->
                           <div class="form-group">
-                            <input type="password" name="form-passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
+                            <input type="password" name="passwordTeam" placeholder="Contraseña del equipo.." class="form-control" id="form-passwordTeam">
                         </div>
                           <div class="form-group">
-                            <input type="password" name="form-passwordTeamRepeat" placeholder="Repetir contraseña del equipo.." class="form-control" id="form-passwordTeamRepeat">
+                            <input type="password" name="passwordTeamRepeat" placeholder="Repetir contraseña del equipo.." class="form-control" id="form-passwordTeamRepeat">
                         </div>
                           
-                        <button type="submit" class="mybtn" onclick="validar();">Guardar cambios..</button>
+                        <button type = "submit" class= "btn btn-lg btn-success" name="editarEquipo" id="bntEditar" >Editar Equipo</button>
+                            <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="btn btn-lg btn-default">Cancelar</a>
                         <!--<div class="form-group">
                                 
                                 <form action="" class="formulario">
@@ -184,6 +192,6 @@
       
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="editarEquipo.js"></script>
+    <!--<script src="editarEquipo.js"></script>-->
   </body>
 </html>

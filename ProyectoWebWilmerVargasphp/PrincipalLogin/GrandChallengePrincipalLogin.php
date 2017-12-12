@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="">
    <head>
@@ -23,7 +25,8 @@
                </div>
                <!-- Inicia Menu -->
                <div class ="collapse navbar-collapse" id ="navegacion-Wil">
-                  <a href= "../Registrarse/GranChallengeRegistro.html" class="btn btn-lg btn-primary navbar-right">Registrarse</a>
+                  <a href= "../Registrarse/GrandChallengeRegistro.php" class="btn btn-lg btn-primary navbar-right">Registrarse</a>
+                  
                </div>
             </div>
          </nav>
@@ -51,15 +54,22 @@
                      </div>
                   </div>
                   <div class="myform-bottom">
-                     <form role="form" action="" method="post" class="form-login">
+                     <form role="form" method="post" class="form-login">
                         <div class="form-group">
-                           <input type="text" name="form-username" placeholder="Usuario..." class="form-control" id="form-username">
+                           <input type="text" name="userName" placeholder="Usuario..." requiered class="form-control" id="form-username" >
                         </div>
-                        <div class="form-group">
-                           <input type="password" name="form-password" placeholder="Contraseña..." class="form-control" id="form-password">
-                        </div>
-                        <a href="#" class="btn btn-lg btn-success" id="bntLogin" onclick="validar();">Entrar</a>  
                         
+                        <div class="form-group">
+                           <input type="password" name="password" placeholder="Contraseña..." requiered class="form-control" id="form-password" >
+                        </div>
+                        <button type = "submit" class= "btn btn-lg btn-success" name = "submit" id="bntLogin" >Entrar</button>
+                    
+
+                        <?php
+
+                        include('login.php');
+
+                        ?>
                      </form>
                   </div>
                </div>

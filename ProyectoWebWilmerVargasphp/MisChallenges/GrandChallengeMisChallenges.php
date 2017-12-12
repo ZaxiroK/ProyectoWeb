@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    $misRetosAceptados = $_SESSION['listRetosAceptados'];
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -10,7 +21,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Iconos--> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500" >
-    <link rel="stylesheet" href="../MiChallenges/estilos.css">
+    <link rel="stylesheet" href="../MisChallenges/estilos.css">
     
   </head>
 
@@ -26,17 +37,18 @@
                         <span class= "icon-bar"></span>
                         <span class= "icon-bar"></span>
                     </button>
-                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="navbar-brand">GrandChallenge</a>
+                   <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="navbar-brand">GrandChallenge</a>
                     
                 </div>
                 
                 <!-- Inicia Menu -->
-                <div class ="collapse navbar-collapse" id ="navegacion-Wil">
-                    <label id ="bienvenido" for = "name  ">Bienvenido</label> 
-                    <label id="usuario" for = "name">Usuario</label> 
-                    <a href= "../MenuPrincipal/GrandChallengeMenuPrincipal.html" class="btn btn-lg btn-primary navbar-right">GrandChallenge</a>
-                    
-                  </div>  
+                <div class="collapse navbar-collapse" id="navegacion-Wil">
+                <label id="bienvenido" for="name  ">Bienvenido</label>
+                <label id="usuario" for="name"><?php echo($_SESSION['userName']);?></label>
+               
+                <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="btn btn-lg btn-primary navbar-right">GrandChallenge</a>
+
+            </div> 
              </div>
         </nav>
     </header>
@@ -81,10 +93,11 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>ID.</th>
-                                    <th>Equipo</th>
-                                    <th>Usuario</th>
-                                    <th>Telefono</th>
+                                    <th>Encargado</th>
+                                    <th>Equipo contrincante</th>
+                                    <th>Usuario contrincante</th>
+                                    <th>Telefono contrincante</th>
+                                    <th>Provincia</th>
                                     <th>Cancha </th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
@@ -93,9 +106,28 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <?php $i = 0;
+                            foreach($misRetosAceptados as $index=> $reto){
+                                $i++;
+                                ?>
+                                <tr aling= "center">
+                                <td><?php echo "$i" ?></td>
+                                <td><?php echo "$reto[encargadoEmailReto]" ?></td>
+                                <td><?php echo "$reto[equipoContrincante]" ?></td>
+                                <td><?php echo "$reto[encargadoContrincanteEmail]" ?></td>
+                                <td><?php echo "$reto[contrincantePhone]" ?></td>
+                                <td><?php echo "$reto[retoProvincia]" ?></td>
+                                <td><?php echo "$reto[retoCancha]" ?></td>
+                                <td><?php echo "$reto[retoDate]" ?></td>
+                                <td><?php echo "$reto[retoTime]" ?></td>
+                                <td><a href= "misChallenges.php?retoEliminar=<?php echo "$reto[retoID]"; ?>">Eliminar</a></td>
+                                
+                    
+                            </tr>
+                            
+                            <?php 
+                                }
+                            ?>
                         </table>
 
 
@@ -127,8 +159,8 @@
                   
                   <div class ="myform-bottom">
                       <div class="form-group">
-                        <a href ="../CrearMisChallenges/GrandChallengeCrearMisRetos.html" class= "btn btn-lg btn-warning" id = "btnBot">Crear mis Challenges</a>
-                        <a href ="../BuscarChallenge/GrandChallengeBuscar.html" class= "btn btn-lg btn-warning" id = "btnBot">Buscar Challenges</a>    <a href ="#" class= "btn btn-lg btn-success" id = "btnBot">Mis Challenges</a>
+                        <a href ="../CrearMisChallenges/GrandChallengeCrearMisRetos.php" class= "btn btn-lg btn-warning" id = "btnBot">Crear mis Challenges</a>
+                        <a href ="../BuscarChallenge/GrandChallengeBuscar.php" class= "btn btn-lg btn-warning" id = "btnBot">Buscar Challenges</a>    <a href ="#" class= "btn btn-lg btn-success" id = "btnBot">Mis Challenges</a>
                         </div>    
                   </div>
                    
@@ -157,6 +189,6 @@
     <!-- Enlazamos el js de Bootstrap, y otros plugins que usemos siempre al final antes de cerrar el body -->
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="MisChallenges.js"></script>
+    <!--<script src="MisChallenges.js"></script>-->
   </body>
 </html>

@@ -285,5 +285,11 @@ button.mybtn:focus {
     font-size: 30px ;
     bottom: -10px
 }
+#fecha{
+    position: relative;
+    color: black;
+    font-size: 30px ;
+    bottom: -10px
+}
 
 

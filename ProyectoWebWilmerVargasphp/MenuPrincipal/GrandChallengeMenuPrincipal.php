@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsesion = $_SESSION['userName'];
+    if($varsesion == null || $varsesion = ''){
+        echo 'Usted no tiene autorizacion';
+        die();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="">
 
@@ -34,12 +44,15 @@
                 <!-- Inicia Menu -->
                 <div class="collapse navbar-collapse" id="navegacion-Wil">
                     
-                    <a href="../PrincipalLogin/GrandChallengePrincipalLogin.html" class="btn btn-lg btn-primary navbar-right" id="btnCerrarSesion">Cerrar Sesion</a>
+                    <a href="cerrarSession.php" class="btn btn-lg btn-primary navbar-right" id="btnCerrarSesion">Cerrar Sesion</a>
                     
-                    <label class= "navbar-right" id="usuario" for="name">Usuario</label>
-                    <label class= "navbar-right"  id="bienvenido" for="name  ">Bienvenido</label>
+                    <label class= "navbar-right" for="name"><?php echo($_SESSION['userName']);?>    </label>
+                    <label class= "navbar-right"  id="bienvenido"  for="name  ">Bienvenido</label>
                     <ul class="nav navbar-nav">
-                        <li><a href="../MiPerfil/GranChallengeMiPerfil.html">Mi Perfil</a>
+
+                    <!--<td><a href= "demo.php?editar=   <?php// echo $id; ?>    ">Editar</a></td>-->
+                    
+                        <li><a href="menuPermisos.php?miPerfil=">Mi Perfil</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Equipo 
@@ -47,17 +60,17 @@
                     </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a onclick="btnMiEquipo();">Mi Equipo </a>
-                                    
+                                <li><a href="menuPermisos.php?miEquipo=">Mi Equipo </a>  
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="../CrearEquipo/GranChallengeCrearEquipo.html">Crear Equipo</a>
+        
+                                <li><a href="menuPermisos.php?crearEquipo=">Crear Equipo</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="../UnirseEquipo/GranChallengeUnirseEquipo.html">Unirse a Equipo</a>
+                                <li><a href="menuPermisos.php?unirseEquipo=">Unirse a Equipo</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="#" onclick="btnEditarEquipo();">Editar Equipo</a>
+                                <li><a href="menuPermisos.php?editarEquipo=" name="editarEquipo">Editar Equipo</a>
                                 </li>
                             </ul>
                         </li>
@@ -67,10 +80,10 @@
                     </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="../RegistrarCancha/GranChallengeRegistrarCancha.html">Registrar cancha</a>
+                                <li><a href="menuPermisos.php?registrarCancha=">Registrar cancha</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="../EditarCancha/GranChallengeEditarCancha.html">Editar cancha</a>
+                                <li><a href="menuPermisos.php?editarCancha=">Editar cancha</a>
                                 </li>
 
                             </ul>
@@ -106,8 +119,8 @@
                 <div class="btn-group">
 
 
-                   
-                    <a href="#" class="btn btn-lg btn-success navbar-right" id="btnEmpezarGC" onclick="btnGrandChallenge();">Empezar Grand Challenge..</a>
+                
+                    <a href="menuPermisos.php?grandChallenge=" class="btn btn-lg btn-success navbar-right" id="btnEmpezarGC" onclick="btnGrandChallenge();">Empezar Grand Challenge..</a>
 
                 </div>
 
@@ -131,7 +144,7 @@
 
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src= "MenuPrincipal.js"></script>
+    <!--<script src= "MenuPrincipal.js"></script>-->
 </body>
 
 </html>
