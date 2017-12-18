@@ -2,7 +2,9 @@
     session_start();
     error_reporting(0);
     $varsesion = $_SESSION['userName'];
+    
     $misRetosAceptados = $_SESSION['listRetosAceptados'];
+
     if($varsesion == null || $varsesion = ''){
         echo 'Usted no tiene autorizacion';
         die();
@@ -94,6 +96,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Encargado</th>
+                                    <th>Equipo Retante</th>
                                     <th>Equipo contrincante</th>
                                     <th>Usuario contrincante</th>
                                     <th>Telefono contrincante</th>
@@ -113,13 +116,14 @@
                                 <tr aling= "center">
                                 <td><?php echo "$i" ?></td>
                                 <td><?php echo "$reto[encargadoEmailReto]" ?></td>
+                                <td><?php echo "$reto[equipoRetante]" ?></td>
                                 <td><?php echo "$reto[equipoContrincante]" ?></td>
                                 <td><?php echo "$reto[encargadoContrincanteEmail]" ?></td>
                                 <td><?php echo "$reto[contrincantePhone]" ?></td>
                                 <td><?php echo "$reto[retoProvincia]" ?></td>
                                 <td><?php echo "$reto[retoCancha]" ?></td>
                                 <td><?php echo "$reto[retoDate]" ?></td>
-                                <td><?php echo "$reto[retoTime]" ?></td>
+                                <td><?php echo "$reto[retoHora]" ?></td>
                                 <td><a href= "misChallenges.php?retoEliminar=<?php echo "$reto[retoID]"; ?>">Eliminar</a></td>
                                 
                     

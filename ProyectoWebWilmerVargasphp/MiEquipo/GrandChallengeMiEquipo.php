@@ -182,7 +182,7 @@
                       <form role="form" action="" method="post" class="">
                             
                        
-                        <a href ="../BuscarChallenge/GrandChallengeBuscar.php" class= "btn btn-lg btn-warning">Buscar Challenge..</a>
+                        <a href ="../MenuPrincipal/menuPermisos.php?grandChallenge=" class= "btn btn-lg btn-warning">Buscar Challenge..</a>
                         <!--<a href ="" class= "btn btn-lg btn-default">Elminar Equipo..</a>-->
                         <div class="form-group">
                              

@@ -3,7 +3,6 @@
     error_reporting(0);
     $varsesion = $_SESSION['userName'];
     $allRetos = $_SESSION['allRetos'];
-
     if($varsesion == null || $varsesion = ''){
         echo 'Usted no tiene autorizacion';
         die();
@@ -206,7 +205,7 @@
                                 <td><?php echo "$reto[retoProvincia]" ?></td>
                                 <td><?php echo "$reto[retoCancha]" ?></td>
                                 <td><?php echo "$reto[retoDate]" ?></td>
-                                <td><?php echo "$reto[retoTime]" ?></td>
+                                <td><?php echo "$reto[retoHora]" ?></td>
                                 <td><a href= "buscarChallenges.php?aceptarReto=<?php echo "$reto[retoID]"; ?>">Aceptar reto</a></td>
                                 
                     

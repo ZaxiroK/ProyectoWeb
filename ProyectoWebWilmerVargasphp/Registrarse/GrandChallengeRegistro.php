@@ -140,7 +140,7 @@
                             <input type="password" name="password" placeholder="Contraseña..." required class="form-control" id="form-password">
                         </div>
                           <div class="form-group">
-                            <input type="password" name="form-passwordRepeat" placeholder="Repetir contraseña..." required class="form-control" id="form-passwordRepeat">
+                            <input type="password" name="passwordRepeat" placeholder="Repetir contraseña..." required class="form-control" id="form-passwordRepeat">
                         </div>
                           <button type = "submit" class= "btn btn-lg btn-success" name="submit" id="bntRegistrar" >Registrarse</button>
                           

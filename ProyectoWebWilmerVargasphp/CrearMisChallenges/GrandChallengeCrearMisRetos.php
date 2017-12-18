@@ -3,7 +3,7 @@
     error_reporting(0);
     $varsesion = $_SESSION['userName'];
     $canchas = $_SESSION['canchas'];
-    $misRetos = $_SESSION['misRetos'];
+    $misRetos = $_SESSION['misRetosBuscando'];
     
     if($varsesion == null || $varsesion = ''){
         echo 'Usted no tiene autorizacion';
@@ -191,7 +191,7 @@
                                 <td><?php echo "$reto[retoProvincia]" ?></td>
                                 <td><?php echo "$reto[retoCancha]" ?></td>
                                 <td><?php echo "$reto[retoDate]" ?></td>
-                                <td><?php echo "$reto[retoTime]" ?></td>
+                                <td><?php echo "$reto[retoHora]" ?></td>
                                 <td><a href= "crearMisRetos.php?retoEliminar=<?php echo "$reto[retoID]"; ?>">Eliminar</a></td>
                                 
                     

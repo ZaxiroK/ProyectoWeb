@@ -3,9 +3,10 @@
     $conexion = mysqli_connect("localhost", "root","","bdgrandchallenge") or die ("error de conexion");
     //echo ("conexion realizada con exito");
    if(isset($_POST['submit'])){
-            /*if($_POST){
-                var_dump($_POST);
-            }*/
+            if($_POST['password'] != $_POST['passwordRepeat']){
+                echo '<script>alert ("Las contraseñas no coinciden "); </script>';
+                echo "<script> location.href=\"../Registrarse/GrandChallengeRegistro.php\" </script>";    
+            }else{
             $userName = $_POST['userName'];
             $name = $_POST['name'];
             $lastName = $_POST['lastName'];
@@ -24,8 +25,7 @@
                            while ($fila = $validacionNombre->fetch_assoc()) {
                                 if($userName == $fila['userName'] || $email == $fila['email']){ 
                                     echo '<script>alert ("El nombre de usuario o email ya esta en uso"); </script>';
-                                     
-                                    die;
+                                    echo "<script> location.href=\"../Registrarse/GrandChallengeRegistro.php\" </script>";
                                     
                                     
                                 } 
@@ -46,5 +46,6 @@
                 die;
                 //parent.window.location.reload();
             }
+        }
         }
     //}

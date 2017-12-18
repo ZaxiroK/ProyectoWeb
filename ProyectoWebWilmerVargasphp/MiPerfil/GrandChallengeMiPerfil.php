@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="myform-bottom">
-                     <form role="form" method="post" class="form-login" action "miPerfil.php">
+                     <form role="form" method="post" class="form-login" action= "miPerfil.php">
                         <div class="form-group">
                            <input type="text" name="userName" placeholder="Usuario..." required class="form-control" id="form-username" value = <?php echo($_SESSION['userName']);?>>
                         </div>
@@ -100,16 +100,9 @@
                         <div class="form-group">
                            <input type="password" name="passwordRepeat" placeholder="Repetir contraseña..." required class="form-control" id="form-repeatPassword" >
                         </div>
-                        <button type = "submit" class= "btn btn-lg btn-success" name = "edit" id="bntLogin" >Editar</button>
+                        <button type ="submit" class= "btn btn-lg btn-success" name ="edit" id="bntLogin" >Editar</button>
                         <a href="../MenuPrincipal/GrandChallengeMenuPrincipal.php" class="btn btn-lg btn-default">Cancelar</a>
-
-                        <?php
-
-                        include('miPerfill.php');
-
-                        ?>
-
-                        
+    
                      </form>
                   </div>
             </div>
@@ -130,23 +123,7 @@
             </div>
         </div>
     </div>
-    <div id="CerrarSesion" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title">Cerrar Session</h4>
-      </div>
-      <div class="modal-body">
-        <strong>¿Está seguro de cerrar session?</strong>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="del" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+    
 
     <script src="../js/jquery-3.2.1.min.js"></script>
       <script src="../js/bootstrap.min.js"></script>

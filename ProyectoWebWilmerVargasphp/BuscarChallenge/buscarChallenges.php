@@ -54,13 +54,14 @@
                 allRetosCreados();
                 listRetosAceptados();
                 misChallengesCreados();
+                misChallengesBuscando();
                 echo "<script> location.href=\"../MisChallenges/GrandChallengeMisChallenges.php\" </script>";
                 die;
                 
             }
         
         
-        $ejecutar = mysqli_query($conexion, $consulta);
+       
         
         
     }
@@ -68,7 +69,7 @@
     function listRetosAceptados(){
         $conexion = mysqli_connect("localhost", "root", "", "bdgrandchallenge") or die("error de conexion");
         $equipo = $_SESSION['teamName'];
-        $consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'aceptado'";
+        $consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'aceptado'|| equipoContrincante = '$equipo' && estadoReto = 'aceptado'";
         $resultado = mysqli_query($conexion, $consulta);
         $filas= mysqli_num_rows($resultado);
         if ($filas > 0)
@@ -113,5 +114,29 @@
 
         }
         }
+}
+function misChallengesBuscando(){
+    $conexion = mysqli_connect("localhost", "root", "", "bdgrandchallenge") or die("error de conexion");
+    $equipo = $_SESSION['teamName'];
+    $consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'buscando'";
+    $resultado = mysqli_query($conexion, $consulta);
+    $filas= mysqli_num_rows($resultado);
+    if ($filas > 0)
+    {
+    if (isset($resultado))
+    {
+        if ($resultado->num_rows != 0){
+            $misRetosBuscando = array();
+            foreach($resultado as $reto){
+                
+                array_push($misRetosBuscando, $reto);
+                
+            }
+                 $_SESSION['misRetosBuscando'] = $misRetosBuscando;
+            
+            }
+
+    }
+    }
 }
     

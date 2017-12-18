@@ -126,6 +126,7 @@ if (isset($_GET['crearEquipo']))
 				misChallengesCreados();
 				allRetosCreados();
 				listRetosAceptados();
+				misChallengesBuscando();
 		echo "<script> location.href=\"../BuscarChallenge/GrandChallengeBuscar.php\" </script>";
 			}else{
 				echo '<script>alert ("Aun no estas registrado en ningun equipo"); </script>';
@@ -326,7 +327,7 @@ function misChallengesCreados(){
 				
 			}
 				 $_SESSION['misRetos'] = $misRetos;
-			
+					
 			}
 
 	}
@@ -362,7 +363,7 @@ function allRetosCreados(){
 function listRetosAceptados(){
 	$conexion = mysqli_connect("localhost", "root", "", "bdgrandchallenge") or die("error de conexion");
 	$equipo = $_SESSION['teamName'];
-	$consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'aceptado'";
+	$consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'aceptado'|| equipoContrincante = '$equipo' && estadoReto = 'aceptado'";
 	$resultado = mysqli_query($conexion, $consulta);
 	$filas= mysqli_num_rows($resultado);
 	if ($filas > 0)
@@ -409,6 +410,30 @@ function datosDeLaCancha(){
 				
 			}
 					
+			}
+
+	}
+	}
+}
+function misChallengesBuscando(){
+	$conexion = mysqli_connect("localhost", "root", "", "bdgrandchallenge") or die("error de conexion");
+	$equipo = $_SESSION['teamName'];
+	$consulta = "SELECT * FROM reto WHERE equipoRetante = '$equipo' && estadoReto = 'buscando'";
+	$resultado = mysqli_query($conexion, $consulta);
+	$filas= mysqli_num_rows($resultado);
+	if ($filas > 0)
+	{
+	if (isset($resultado))
+	{
+		if ($resultado->num_rows != 0){
+			$misRetosBuscando = array();
+			foreach($resultado as $reto){
+				
+				array_push($misRetosBuscando, $reto);
+				
+			}
+				 $_SESSION['misRetosBuscando'] = $misRetosBuscando;
+			
 			}
 
 	}
