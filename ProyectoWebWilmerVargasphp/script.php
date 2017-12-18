@@ -6,8 +6,7 @@ error_reporting(0);
 $conexion = mysqli_connect("localhost", "root","","bdgrandchallenge") or die ("error de conexion");
 
 sacarEquipo();
-enviarCorreoRecordatorio($_SESSION['recordatorioRetante']);
-enviarCorreoRecordatorio($_SESSION['recordatorioContrincante']);
+enviarCorreoRecordatorio($_SESSION['correosRecordatorio']);
 
 
 
@@ -91,6 +90,7 @@ function sacarEquipo2(){
                         }
                         $_SESSION['recordatorioRetante'] = $equipoContrincante;
                         
+                        unirCorreos();
                         
     
                        
@@ -102,30 +102,76 @@ function sacarEquipo2(){
     }
 
 }   
+    function unirCorreos(){
+        
+        $correosRetantes = $_SESSION['recordatorioRetante'];
+        /*var_dump($correosRetantes);
+        die;*/
+        $correosContrincante = $_SESSION['recordatorioContrincante'];
+        /*var_dump($correosContrincante);
+        die;*/
+        
+        $correosRecordatorio = array();
+        foreach($correosRetantes as $correo){
+            if( $correo != ""){
+                array_push($correosRecordatorio, $correo);
+            }
+            
+        }
+        foreach($correosContrincante as $correo){
+            if( $correo != ""){
+            array_push($correosRecordatorio, $correo);
+        }
+        }
+        $_SESSION['correosRecordatorio'] = $correosRecordatorio;
+        
+    }
 
     function enviarCorreoRecordatorio($emails){
     $emailGrandChallenge = 'zaxirok@gmail.com';
     $asunto = "Recordatorio de reto";
     $carta = "De $emailGrandChallenge\n";
-    $carta = "Le queremos recordar que su reto se realizar en tan solo 2 dias, por favor ser puntual gracias";
-
-    //mail($emailGrandChallenge,"Recordatorio",$carta);
+    $carta =  "Le queremos recordar que su reto se realizar en tan solo 2 dias, por favor ser puntual gracias";
+    
+    $i=0;
+    
             foreach($emails as $email){
-                //echo($email);
-                //die;
-                $destinatario = $email;
-              if(mail('vvilmervd@gmail.com',$asunto,$carta,'From: zaxirok@gmail.com')){
-                  
-                header('Location:mensaje.html');
-              }else{
-                  echo("Hubieron problemas de configuracion al enviar el email");
+               /* if($destinatario == ""){
+                    $destinatario = $email ;
+                }else{
+                    $destinatario .= " ".$email; 
+                }*/
+                foreach($_SESSION['recordatorioRetante'] as $correo){
+                    if( $correo == $email){
+                        $destinatario = $email; 
+                        mail($destinatario,$asunto,$carta,'From: zaxirok@gmail.com');
+                        $i++;
+                    }else{
+                        foreach($_SESSION['recordatorioContrincante'] as $correo){
+                            if( $correo == $email){
+                                $destinatario = $email; 
+                                mail($destinatario,$asunto,$carta,'From: zaxirok@gmail.com');
+                                $i++;
+                        }  
+                        
+                    }
+                    
+                } 
+              
+            }
+            
               }
+              /*echo($i);
+              die;*/
+              //mail($destinatario,$asunto,$carta,'From: zaxirok@gmail.com');
+              
+              
+              header('Location:mensaje.html');
+              
             
         } 
             
-            
-        
-    }
+    
         
     
        
