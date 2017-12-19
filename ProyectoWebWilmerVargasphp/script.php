@@ -128,22 +128,20 @@ function sacarEquipo2(){
     }
 
     function enviarCorreoRecordatorio($emails){
-    $emailGrandChallenge = 'zaxirok@gmail.com';
-    $asunto = "Recordatorio de reto";
-    $carta = "De $emailGrandChallenge\n";
-    $carta =  "Le queremos recordar que su reto se realizar en tan solo 2 dias, por favor ser puntual gracias";
+    
     
     $i=0;
     
             foreach($emails as $email){
-               /* if($destinatario == ""){
-                    $destinatario = $email ;
-                }else{
-                    $destinatario .= " ".$email; 
-                }*/
+                $emailGrandChallenge = 'zaxirok@gmail.com';
+                $asunto = "GrandChallenge recordatorio de reto";
+                $carta = " Buenas $email usuario de GrandChallenge\n";
+                $carta .= " Le queremos recordar que su reto se realizar en tan solo 2 dias, por favor ser puntual gracias";
                 foreach($_SESSION['recordatorioRetante'] as $correo){
                     if( $correo == $email){
                         $destinatario = $email; 
+
+
                         mail($destinatario,$asunto,$carta,'From: zaxirok@gmail.com');
                         $i++;
                     }else{
@@ -159,14 +157,14 @@ function sacarEquipo2(){
                 } 
               
             }
-            
+            echo("Hecho");
+            //die;
+            //header('Location:mensaje.html');
               }
-              /*echo($i);
-              die;*/
-              //mail($destinatario,$asunto,$carta,'From: zaxirok@gmail.com');
+              
+             
               
               
-              header('Location:mensaje.html');
               
             
         } 
