@@ -40,13 +40,14 @@
                     </button>
 
                 </div>
+                
 
                 <!-- Inicia Menu -->
                 <div class="collapse navbar-collapse" id="navegacion-Wil">
                     
                     <a href="cerrarSession.php" class="btn btn-lg btn-primary navbar-right" id="btnCerrarSesion">Cerrar Sesion</a>
                     
-                    <label class= "navbar-right" for="name"><?php echo($_SESSION['userName']);?>    </label>
+                    <label  id="usuario"class= "navbar-right" for="name"><?php echo($_SESSION['userName']);?>    </label>
                     <label class= "navbar-right"  id="bienvenido"  for="name  ">Bienvenido</label>
                     <ul class="nav navbar-nav">
 
